@@ -1,4 +1,12 @@
+<<<<<<< Updated upstream
 [Collisions and accident](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/about_data)
+=======
+[Collisions and accident] (https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/about_data)
+
+[Traffic speeds on streets] https://data.cityofnewyork.us/Transportation/DOT-Traffic-Speeds-NBE/i4gi-tjb9/about_data
+
+
+>>>>>>> Stashed changes
 
 
 

@@ -11,7 +11,7 @@
 [Weather Crash Data] (https://huggingface.co/datasets/xx103/NYC_Motor_Vehicle_Collisions_and_Weather_Dataset)
 
 
-
+[Traffic Speed on a local NYC Street] (https://data.cityofnewyork.us/Transportation EZ-Pass-Readers-July-2024-current/6a2s-2t65/about_data)
 
 
 

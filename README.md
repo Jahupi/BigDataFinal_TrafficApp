@@ -1,21 +1,28 @@
-<<<<<<< Updated upstream
-[Collisions and accident](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/about_data)
-=======
-[Collisions and accident] (https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/about_data)
+# BigDataFinal_TrafficApp
 
-[Traffic speeds on streets] https://data.cityofnewyork.us/Transportation/DOT-Traffic-Speeds-NBE/i4gi-tjb9/about_data
+This project fetches traffic crash data from the NYC Open Data API, produces it to a local Kafka topic, and pickles it for backup.
 
+## Setup
 
->>>>>>> Stashed changes
+1. Ensure Docker Desktop is installed and running.
+2. Start Kafka locally: `docker compose up -d`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Run the script: `python main.py`
 
-[Weather Crash Data] (https://huggingface.co/datasets/xx103/NYC_Motor_Vehicle_Collisions_and_Weather_Dataset)
+The script will fetch up to 50,000 crash records, produce them to the 'crashes' Kafka topic, and save to `crashes.pkl`.
 
+## Kafka
 
-[Traffic Speed on a local NYC Street] (https://data.cityofnewyork.us/Transportation EZ-Pass-Readers-July-2024-current/6a2s-2t65/about_data)
+- Local Kafka runs on `localhost:9092`.
+- Topic: `crashes` (auto-created).
+- To consume: Use a Kafka consumer tool or script.
 
+## Data Sources
 
-
-
+- [Collisions and accident](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/about_data)
+- [Traffic speeds on streets](https://data.cityofnewyork.us/Transportation/DOT-Traffic-Speeds-NBE/i4gi-tjb9/about_data)
+- [Weather Crash Data](https://huggingface.co/datasets/xx103/NYC_Motor_Vehicle_Collisions_and_Weather_Dataset)
+- [Traffic Speed on a local NYC Street](https://data.cityofnewyork.us/Transportation/EZ-Pass-Readers-July-2024-current/6a2s-2t65/about_data)
 
 (a) Use past and present congestion information to predict how long
 congestion might last or how impactful the congestion might be.

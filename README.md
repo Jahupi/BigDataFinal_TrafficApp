@@ -1,21 +1,49 @@
 # BigDataFinal_TrafficApp
 
-This project fetches traffic crash data from the NYC Open Data API, produces it to a local Kafka topic, and pickles it for backup.
+This project fetches traffic crash data from the NYC Open Data API hourly, produces new records to a local Kafka topic, and consumes them into MongoDB Atlas for analysis.
 
 ## Setup
 
 1. Ensure Docker Desktop is installed and running.
 2. Start Kafka locally: `docker compose up -d`
 3. Install dependencies: `pip install -r requirements.txt`
-4. Run the script: `python main.py`
+4. Set up MongoDB Atlas connection (see MongoDB section below).
+5. Run the producer in the background: `python main.py` (it will fetch new data hourly).
+6. In a separate terminal, run the consumer: `python consumer.py` (leave it running to consume new messages).
 
-The script will fetch up to 50,000 crash records, produce them to the 'crashes' Kafka topic, and save to `crashes.pkl`.
+The producer runs continuously, checking for new crash records since the last update (stored in `last_update.txt`) and producing only new data to Kafka hourly. The consumer reads from Kafka and inserts into MongoDB.
 
 ## Kafka
 
 - Local Kafka runs on `localhost:9092`.
 - Topic: `crashes` (auto-created).
-- To consume: Use a Kafka consumer tool or script.
+- Consumer group: `traffic-consumer-group`.
+
+## MongoDB
+
+- Connected to MongoDB Atlas.
+- Database: `traffic_data`
+- Collection: `crashes`
+- Connection URI stored in `secrets.env` as `MONGODB_URI`.
+- Use the MongoDB VS Code extension to browse and query the data directly in VS Code.
+
+## Data Sources
+
+## Kafka
+
+- Local Kafka runs on `localhost:9092`.
+- Topic: `crashes` (auto-created).
+- Consumer group: `traffic-consumer-group`.
+
+## MongoDB
+
+- Connected to MongoDB Atlas.
+- Database: `traffic_data`
+- Collection: `crashes`
+- Connection URI stored in `secrets.env` as `MONGODB_URI`.
+- Use the MongoDB VS Code extension to browse and query the data directly in VS Code.
+
+## Data Sources
 
 ## Data Sources
 

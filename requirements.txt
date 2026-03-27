@@ -2,4 +2,3 @@ requests
 python-dotenv
 confluent-kafka
 pymongo
-pymongo

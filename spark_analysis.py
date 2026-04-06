@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession
 from dotenv import load_dotenv
 import os
+import sys
 
 # Load secrets from .env
 load_dotenv(dotenv_path="secrets.env")
@@ -12,15 +13,14 @@ MONGO_COLLECTION = os.getenv("MONGO_COLLECTION")
 if not MONGODB_URI or not MONGO_DB or not MONGO_COLLECTION:
     raise ValueError("Missing one of MONGODB_URI, MONGO_DB, MONGO_COLLECTION in secrets.env")
 
-# Path to the built Spark connector
-CONNECTOR_JAR = os.getenv("SPARK_JARS")
+# Set PYSPARK_PYTHON to the current Python executable
+os.environ['PYSPARK_PYTHON'] = sys.executable
 
 # Name can be anything
 spark_builder = SparkSession.builder.appName("TrafficAppMongoAnalysis")
 
-# Connect the jar
-if os.path.exists(CONNECTOR_JAR):
-    spark_builder = spark_builder.config("spark.jars", CONNECTOR_JAR)
+# Connect the jar using packages to get dependencies
+spark_builder = spark_builder.config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.4.0")
 
 # Connect read and write to MongoDB
 spark_builder = spark_builder.config("spark.mongodb.read.connection.uri", MONGODB_URI)
@@ -34,7 +34,7 @@ print("Spark session created")
 # Spark session can be succesfully created, but something below here breaks
 
 # .load from this creation is breaking, breakpoint on line 44 for time being
-df = spark.read.format("mongo") \
+df = spark.read.format("mongodb") \
     .option("database", MONGO_DB) \
     .option("collection", MONGO_COLLECTION) \
     .load() #Error here

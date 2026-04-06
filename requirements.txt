@@ -2,4 +2,4 @@ requests
 python-dotenv
 confluent-kafka
 pymongo
-pyspark
+pyspark==3.5.0

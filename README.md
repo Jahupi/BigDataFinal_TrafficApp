@@ -48,7 +48,7 @@ Tools:
 • Data ingestion: Kafka (real-time)
 • Storage: MongoDB
 • Analysis: Spark SQL
-• Visualization: Tableau or Google Maps API
+• Visualization: Tableau
 
 
 ## Data Sources
@@ -58,9 +58,7 @@ Tools:
 - [Weather Crash Data](https://huggingface.co/datasets/xx103/NYC_Motor_Vehicle_Collisions_and_Weather_Dataset)
 - [Traffic Speed on a local NYC Street](https://data.cityofnewyork.us/Transportation/EZ-Pass-Readers-July-2024-current/6a2s-2t65/about_data)
 
-(a) Use past and present congestion information to predict how long
-congestion might last or how impactful the congestion might be.
-Will also be used to find the least congested times.
+(a) Use past and present traffic speeds to determine whether there is currently congestion by comparing the speeds and times against each other.
 ~~(b) Use past and present accident/collision information to analyze
 which routes/streets are the most dangerous. Show as a bar chart
 with the top 10 most dangerous intersections/streets.~~

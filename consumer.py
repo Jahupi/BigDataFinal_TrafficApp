@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv('secrets.env')
 
-# Kafka consumer config (matches your producer's local setup)
+# Kafka consumer config (connects to both brokers)
 conf = {
-    'bootstrap.servers': 'localhost:9092',
+    'bootstrap.servers': 'localhost:9092,localhost:9093',  # Connect to both Kafka brokers
     'group.id': 'traffic-consumer-group',  # Unique group for your consumer
     'auto.offset.reset': 'earliest'  # Start from the beginning if no offset exists
 }
@@ -21,10 +21,11 @@ if not mongodb_uri:
     raise ValueError("MONGODB_URI not found in secrets.env")
 client = MongoClient(mongodb_uri)
 db = client['traffic_data']  # Replace with your database name
-collection = db['crashes']  # Replace with your collection name
+crashes_collection = db['crashes']  # Collection for crash data
+speeds_collection = db['speeds']   # Collection for speed data
 
-# Subscribe to the topic
-consumer.subscribe(['crashes'])
+# Subscribe to both topics
+consumer.subscribe(['crashes', 'speeds'])
 
 try:
     while True:
@@ -39,13 +40,23 @@ try:
         else:
             # Deserialize the message value (JSON string)
             record = json.loads(msg.value().decode('utf-8'))
+            topic = msg.topic()
 
-            # Insert into MongoDB (add error handling as needed)
-            try:
-                collection.insert_one(record)
-                print(f"Inserted record with collision_id: {record.get('collision_id', 'unknown')}")
-            except Exception as e:
-                print(f"Error inserting into MongoDB: {e}")
+            # Route to appropriate MongoDB collection based on topic
+            if topic == 'crashes':
+                try:
+                    crashes_collection.insert_one(record)
+                    print(f"Inserted crash record with collision_id: {record.get('collision_id', 'unknown')}")
+                except Exception as e:
+                    print(f"Error inserting crash into MongoDB: {e}")
+            
+            elif topic == 'speeds':
+                try:
+                    speeds_collection.insert_one(record)
+                    print(f"Inserted speed record with id: {record.get('id', 'unknown')}")
+                except Exception as e:
+                    print(f"Error inserting speed into MongoDB: {e}")
+
 except KeyboardInterrupt:
     print("Consumer interrupted")
 finally:

@@ -31,8 +31,8 @@ The producer runs continuously, checking for new crash records since the last up
 
 ## Kafka
 
-- Local Kafka runs on `localhost:9092`.
-- Topic: `crashes` (auto-created).
+- Local Kafka runs on `localhost:9092 | 9093`.
+- Topic: `crashes | speeds` (auto-created).
 - Consumer group: `traffic-consumer-group`.
 
 ## MongoDB

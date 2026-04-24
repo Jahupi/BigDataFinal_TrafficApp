@@ -1,0 +1,451 @@
+================================================================================
+                        TROUBLESHOOTING GUIDE
+================================================================================
+
+If you encounter issues, find your problem below and follow the solution.
+
+================================================================================
+                    TABLEAU VISUALIZATION ISSUES
+================================================================================
+
+PROBLEM 1: Map doesn't appear (blank white screen)
+===============================================
+
+CAUSE: Geographic coordinates not recognized
+
+SOLUTION:
+1. In Tableau, right-click [Latitude] field
+2. Select: Geographic Role → Latitude
+3. Right-click [Longitude] field
+4. Select: Geographic Role → Longitude
+5. Map should appear immediately
+
+If still blank:
+- Make sure Latitude is on ROWS shelf
+- Make sure Longitude is on COLUMNS shelf
+- Try clicking "Fit Width" button in toolbar
+
+PROBLEM 2: No colors on map (all same color)
+===========================================
+
+CAUSE: Congestion_Index not properly applied to Color
+
+SOLUTION:
+1. Left panel → Find Congestion_Index (under Measures)
+2. Drag it to COLOR button (Marks panel)
+3. Release it
+4. Colors should appear
+
+If still no color:
+- Double-click COLOR button to reset
+- Check that Congestion_Index has numeric values
+- Try: Right-click Color → Edit Colors → Red-Blue
+
+PROBLEM 3: Map shows but zoomed to wrong location
+================================================
+
+CAUSE: Some data points outside NYC bounds
+
+SOLUTION:
+1. View menu → Zoom → Entire View
+2. Or: Fit → Entire View (in toolbar)
+3. Or: Double-click background to reset
+
+To scope to NYC only:
+1. Click Filter icon on Marks
+2. Add filter: Latitude between 40.5 and 41.0
+3. Add filter: Longitude between -74.3 and -73.7
+
+PROBLEM 4: Points look scattered, not clustered
+===============================================
+
+CAUSE: Too much transparency or colors not right
+
+SOLUTION:
+1. In Marks panel, click Color button
+2. Move Opacity slider to 80%+
+3. Check color palette: Red-Blue (Red = high)
+
+Alternative: Use density instead of bubbles
+1. Change Mark Type dropdown to DENSITY
+2. Creates contour heat map instead of points
+
+PROBLEM 5: Hover doesn't show street names
+===========================================
+
+CAUSE: Street not in Detail marks
+
+SOLUTION:
+1. Left panel → Find Street (Dimensions)
+2. Drag Street to DETAIL button
+3. Now hover shows street name
+4. For more info: Also drag Incident_Count to DETAIL
+
+PROBLEM 6: Tableau crashes when opening map
+===========================================
+
+CAUSE: Too many data points for Desktop version
+
+SOLUTION:
+1. Close Tableau completely
+2. Edit crash_heat_map_data.csv in Excel/Notepad
+3. Delete rows beyond row 5000 (keeps top 5000 hotspots)
+4. Save file
+5. Reopen in Tableau
+
+Or use simpler data:
+- Try: street_lines_heatmap.csv (much simpler)
+- Try: street_polylines.csv (shows only street centers)
+
+================================================================================
+                        DATA UPDATE ISSUES
+================================================================================
+
+PROBLEM 7: CSV files aren't updating
+====================================
+
+CAUSE: Task Scheduler not running or batch file has error
+
+SOLUTION:
+1. Open Task Scheduler (Windows Key + R → taskschd.msc)
+2. Find: Update_Tableau_Traffic_Data
+3. Right-click it → Run
+4. Wait 10 seconds
+5. Check export_log.txt for errors
+
+If no export_log.txt:
+- Batch file isn't running
+- Check path in Task Scheduler is correct
+- Verify auto_update_tableau.bat exists
+
+Common batch file errors:
+- Python not found: pip install pymongo python-dotenv
+- MongoDB connection error: Check MONGODB_URI in secrets.env
+- File permission error: Run Task Scheduler as Administrator
+
+PROBLEM 8: export_log.txt shows errors
+======================================
+
+ERROR: No module named 'pymongo'
+SOLUTION:
+  pip install pymongo python-dotenv
+  
+ERROR: Connection refused (MongoDB)
+SOLUTION:
+  1. Verify MongoDB Atlas account is active
+  2. Check MONGODB_URI is correct in ../secrets.env
+  3. Test: python -c "from pymongo import MongoClient; print('OK')"
+
+ERROR: File not found
+SOLUTION:
+  Verify all files are in Tableau_Necessities folder:
+  - auto_update_tableau.bat
+  - export_to_tableau.py
+  - create_line_heatmap.py
+  - crash_heat_map_data.csv
+
+ERROR: Permission denied
+SOLUTION:
+  Run batch file as Administrator:
+  - Right-click auto_update_tableau.bat
+  - Select: Run as Administrator
+  - May need to update Task Scheduler to run with privileges
+
+PROBLEM 9: Data is old (not updating)
+====================================
+
+CAUSE: Data hasn't refreshed in Tableau
+
+SOLUTION:
+1. In Tableau, press: Ctrl + R
+2. Wait 5 seconds
+3. Map updates with latest data
+
+If still old:
+1. Check export_log.txt for recent timestamps
+2. Check CSV file modification date (right-click → Properties)
+3. If not recent, manually run batch file
+4. Wait 30 seconds, then refresh Tableau
+
+PROBLEM 10: Task Scheduler says "Last Run Result: error"
+========================================================
+
+CAUSE: Various - see export_log.txt
+
+SOLUTION:
+1. Open export_log.txt in Tableau_Necessities folder
+2. Look for error messages
+3. Find matching solution in this guide
+4. Fix the issue
+5. Right-click task → Run (to test fix)
+6. Check Last Run Result again
+
+Common errors and fixes:
+- "File not found" → Check paths are correct
+- "Connection refused" → Check MongoDB connection
+- "Permission denied" → Run as Administrator
+- "Python error" → Check Python installation
+
+To view detailed error info:
+1. Open Event Viewer (Windows Key + R → eventvwr.msc)
+2. Windows Logs → Application
+3. Look for errors from Task Scheduler
+4. Read error message for clues
+
+================================================================================
+                      INSTALLATION ISSUES
+================================================================================
+
+PROBLEM 11: Can't find Tableau on computer
+===========================================
+
+SOLUTION:
+1. Check if Tableau is installed:
+   - Start Menu → Search "Tableau"
+   - If not found, need to install
+
+2. Install Tableau (if not present):
+   - Download from: tableau.com/free-trial
+   - Or use existing Company license
+   - Run installer
+   - Restart computer after install
+
+3. Verify installation:
+   - Start Menu → Search "Tableau Desktop"
+   - Should appear immediately
+
+PROBLEM 12: Python not found / TypeError Python errors
+======================================================
+
+CAUSE: Python not in PATH or modules missing
+
+SOLUTION:
+1. Verify Python installed:
+   Open PowerShell and type: python --version
+   Should show version number
+
+2. If not found:
+   - Install Python 3.9+ from python.org
+   - IMPORTANT: Check "Add to PATH" during install
+   - Restart computer
+
+3. Install required modules:
+   Open PowerShell and run:
+   pip install pymongo python-dotenv
+
+4. Test installation:
+   python -c "import pymongo; print('OK')"
+   Should print: OK
+
+PROBLEM 13: Can't connect to MongoDB
+===================================
+
+CAUSE: Connection string missing or incorrect
+
+SOLUTION:
+1. Navigate to parent folder: ../ (one level up)
+2. Open: secrets.env
+3. Check it has: MONGODB_URI=mongodb+srv://...
+
+If missing or wrong:
+1. Get correct URI from MongoDB Atlas
+2. Edit secrets.env
+3. Add line: MONGODB_URI=<your-connection-string>
+4. Save file
+
+To test connection:
+Open PowerShell and run:
+python -c "from pymongo import MongoClient; import os; from dotenv import load_dotenv; load_dotenv('../secrets.env'); client = MongoClient(os.getenv('MONGODB_URI')); print(client.server_info())"
+
+Should print server info (not error)
+
+================================================================================
+                      PERFORMANCE ISSUES
+================================================================================
+
+PROBLEM 14: Tableau runs slowly with heat map
+==============================================
+
+CAUSE: Too many data points (31,483 is a lot)
+
+SOLUTION (Quick):
+1. Reduce data points in Python script:
+   - Edit: export_to_tableau.py
+   - Find: $limit: 500
+   - Change to: $limit: 2000 (for faster loading)
+   - Run: python export_to_tableau.py
+2. Use reduced CSV in Tableau
+
+SOLUTION (Better):
+Use street summary instead of all points:
+- Use: street_lines_heatmap.csv (500 streets)
+- Much faster than 31,483 points
+- Still shows same congestion patterns
+
+SOLUTION (Best):
+Use density map:
+- Mark Type: DENSITY (instead of circle)
+- Same data, visualized as heat zones
+- Faster rendering
+
+PROBLEM 15: Refresh takes a long time (>10 seconds)
+==================================================
+
+CAUSE: Large CSV file being read
+
+SOLUTION:
+1. Reduce CSV rows (see Problem 14)
+2. Use street_lines_heatmap.csv instead
+3. Set Tableau to extract-based mode (faster)
+
+In Tableau:
+1. Data → [Your Data] → Extract Data
+2. Right-click extract → "Incremental Refresh Enabled"
+3. Data loads from extract (much faster)
+
+================================================================================
+                      FILE/FOLDER ISSUES
+================================================================================
+
+PROBLEM 16: Can't find files in Tableau_Necessities
+==================================================
+
+CAUSE: Files in wrong location or folder deleted
+
+SOLUTION:
+1. Verify folder exists:
+   C:\Users\s558312\Documents\GitHub\BigDataFinal_TrafficApp\Tableau_Necessities
+
+2. Check contents:
+   Should have these files (at minimum):
+   - crash_heat_map_data.csv
+   - auto_update_tableau.bat
+   - export_to_tableau.py
+   - MASTER_SETUP_GUIDE.txt
+
+3. If some files missing:
+   - Copy them from tableau_data folder (one level up)
+   - Or regenerate: python export_to_tableau.py
+
+4. Verify CSV has data:
+   - Right-click crash_heat_map_data.csv
+   - Open with: Notepad
+   - Should see data (not empty)
+
+PROBLEM 17: Accidentally deleted files
+======================================
+
+SOLUTION:
+1. Check if folder exists: Tableau_Necessities
+2. If yes, check what files remain
+3. Missing files can be recreated:
+
+   From parent folder (tableau_data):
+   - Copy CSV files to Tableau_Necessities
+   - Copy Python scripts
+   - Copy batch file
+
+   Or regenerate:
+   - Open PowerShell
+   - cd to tableau_data
+   - Run: python export_to_tableau.py
+   - Copy output CSVs to Tableau_Necessities
+
+PROBLEM 18: Files are read-only
+===============================
+
+CAUSE: Windows file permissions
+
+SOLUTION:
+1. Right-click file
+2. Select: Properties
+3. Uncheck: Read-only
+4. Click: Apply → OK
+
+For batch file specifically:
+1. Right-click: auto_update_tableau.bat
+2. Select: Properties
+3. General tab → Uncheck: Read-only
+4. Security tab → Add your user → Full Control
+5. Apply → OK
+
+================================================================================
+                      WHEN ALL ELSE FAILS
+================================================================================
+
+COMPLETE RESET PROCEDURE:
+
+If nothing works, start fresh:
+
+Step 1: Delete everything
+- Delete: Tableau_Necessities folder
+- Delete: .twbx Tableau workbook file
+
+Step 2: Regenerate from source
+- Open PowerShell
+- cd C:\Users\s558312\Documents\GitHub\BigDataFinal_TrafficApp\tableau_data
+- Run: python export_to_tableau.py
+- Wait for completion
+
+Step 3: Create fresh Tableau workbook
+- Open Tableau
+- File → New
+- Connect to: crash_heat_map_data.csv
+- Follow MASTER_SETUP_GUIDE.txt steps 3-7
+
+Step 4: Re-setup task scheduler
+- Open Task Scheduler
+- Follow WINDOWS_TASK_SCHEDULER_SETUP.txt
+
+This should work 100% if data is valid.
+
+================================================================================
+                        GETTING HELP
+================================================================================
+
+If you're still stuck:
+
+1. Check all three guides:
+   [ ] MASTER_SETUP_GUIDE.txt
+   [ ] WINDOWS_TASK_SCHEDULER_SETUP.txt
+   [ ] DATA_VERIFICATION.txt
+
+2. Check export_log.txt for specific errors
+
+3. Verify all files exist in Tableau_Necessities
+
+4. Verify MongoDB connection (test manually)
+
+5. Test Python installations work
+
+6. Try the COMPLETE RESET PROCEDURE above
+
+Common quick fixes:
+- Press Ctrl+R to refresh Tableau
+- Restart Tableau application
+- Restart Windows
+- Run Task Scheduler as Administrator
+
+If you need to contact support:
+- Screenshot the error message
+- Copy export_log.txt content
+- List steps you've tried
+- Include Windows version (Windows 10/11)
+
+================================================================================
+                          SUMMARY
+================================================================================
+
+Most Common Issues:
+1. Map doesn't show → Set geographic roles
+2. No colors → Drag Congestion_Index to Color
+3. Data not updating → Run Task Scheduler manually
+4. Slow performance → Use street_lines_heatmap.csv
+
+Quick Fixes (99% work):
+- Ctrl+R (refresh in Tableau)
+- Restart Tableau
+- Restart Windows
+- Run Task Scheduler manually
+
+You're now equipped to troubleshoot any issue! 🔧

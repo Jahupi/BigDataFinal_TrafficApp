@@ -1,0 +1,68 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║              TABLEAU HEAT MAP - FIXED STREET LINES GUIDE                    ║
+║                    (Lines Stay On NYC Streets Only)                         ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📊 DATA FILE: street_lines_clean.csv (3,484 streets - NEW & FIXED)
+   └─ All coordinates filtered to NYC bounds (no ocean, no bad data)
+
+═══════════════════════════════════════════════════════════════════════════
+
+QUICK SETUP (5 minutes):
+
+1. Open Tableau Desktop
+
+2. File → Open Data Connection
+   • Select: street_lines_clean.csv
+
+3. Drag to Worksheet
+
+4. BUILD THE MAP:
+   • Drag Avg_Longitude → COLUMNS
+   • Drag Avg_Latitude → ROWS
+   (You now have one point per street)
+
+5. ADD THE LINES:
+   • Drag Street → DETAIL
+   (This groups all points by street name)
+
+6. COLOR BY CONGESTION:
+   • Drag Avg_Congestion → COLOR
+   • Set Scale: Blue (safe) to Red (danger)
+   • Adjust range: 0 to 0.15 (for better visibility)
+
+7. SIZE BY INCIDENTS:
+   • Drag Total_Incidents → SIZE
+   (Busier streets appear thicker)
+
+═══════════════════════════════════════════════════════════════════════════
+
+✓ RESULT: Colored lines on NYC streets showing:
+   🔵 Blue = Safe streets
+   🔴 Red = Congested streets  
+   • Thicker = More incidents
+   • All lines stay within NYC boundaries (no ocean!)
+
+═══════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+
+Q: I still see ocean lines?
+A: Make sure you're using street_lines_clean.csv (not street_lines_heatmap.csv)
+
+Q: Lines look disconnected?
+A: Check that Street is on DETAIL shelf (not COLOR or SIZE)
+
+Q: No data visible?
+A: Verify the .csv file is selected and Tableau refreshed (Ctrl+R)
+
+═══════════════════════════════════════════════════════════════════════════
+
+SAVE & AUTO-UPDATE:
+
+After creating your visualization:
+1. File → Save As → "NYC_Street_Congestion_Map"
+2. Set auto-refresh: Data → Auto-update data source every 1 hour
+   (Your MongoDB export script handles the updates)
+
+═══════════════════════════════════════════════════════════════════════════

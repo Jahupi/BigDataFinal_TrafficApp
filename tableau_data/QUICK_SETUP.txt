@@ -1,0 +1,97 @@
+
+================================================================================
+                TABLEAU HEAT MAP - QUICK SETUP INSTRUCTIONS
+================================================================================
+
+STEP 1: Open Tableau Desktop
+
+STEP 2: Create New Workbook
+   - File -> New -> Connect to Data
+   - Select "Text file" 
+   - Choose: crash_heat_map_data.csv
+
+STEP 3: Build the Heat Map (in THIS order)
+   
+   a) CREATE MAP VIEW:
+      - Drag [Latitude] to ROWS shelf
+      - Drag [Longitude] to COLUMNS shelf
+      - Map appears automatically
+   
+   b) ADD HEAT MAP COLORS:
+      - Drag [Congestion_Index] to COLOR button (in Marks card)
+      - Points now colored by congestion level
+   
+   c) SET COLOR PALETTE:
+      - Click on the Color legend
+      - Choose: Red-Yellow-Green (recommended) or Red-Blue
+      - Red = High congestion
+      - Green = Low congestion
+   
+   d) OPTIONAL - ADD BUBBLE SIZE:
+      - Drag [Incident_Count] to SIZE button
+      - Larger bubbles = more incidents
+   
+   e) OPTIONAL - ADD STREET NAMES:
+      - Drag [Street] to DETAIL button
+      - Hover over points to see street names
+   
+   f) OPTIONAL - ADD TOOLTIP INFO:
+      - Right-click on map -> Edit Tooltip
+      - Add these fields:
+        * Street
+        * Incident_Count
+        * Injured
+        * Killed
+        * Congestion_Index
+
+STEP 4: Customize the Visualization
+   
+   ADJUST OPACITY:
+   - Click Color in Marks panel
+   - Drag Opacity slider to 60-70%
+   
+   ZOOM INTO MANHATTAN:
+   - Scroll to zoom in on high-incident areas
+   - Red clusters show congestion hotspots
+
+STEP 5: Add Filters (Optional)
+   - Drag [Street] to FILTERS shelf
+   - Now you can select specific streets to view
+
+STEP 6: View Results
+   Your heat map should show:
+   - Red areas = High traffic congestion
+   - Yellow areas = Medium congestion  
+   - Green areas = Low congestion
+
+================================================================================
+
+TIPS:
+
+* If map doesn't show: Set Latitude/Longitude as Geographic Role
+  - Right-click [Latitude] -> Geographic Role -> Latitude
+  - Right-click [Longitude] -> Geographic Role -> Longitude
+
+* To zoom: Use mouse wheel or Tableau's zoom tools
+
+* To see all points: Adjust opacity to 50-70%
+
+* Manhattan hotspots: Look for red clusters around:
+  - 12th Avenue (West Side Highway)
+  - Central Park areas
+  - Major intersections (42nd St, 59th St, etc.)
+
+================================================================================
+
+FINAL HEAT MAP FEATURES:
+
+* Geographic map of NYC with latitude/longitude
+* Color-coded points (red = congestion hotspots)
+* Bubble size shows incident density
+* Hover tooltips with street names & incident details
+* Filterable by street name
+* Real incident data from MongoDB
+
+================================================================================
+
+Need more help? Check TABLEAU_SETUP_GUIDE.md for detailed troubleshooting.

@@ -1,0 +1,150 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║          TABLEAU STREET CONGESTION MAP - PROPER LINE SEGMENTS              ║
+║                 (Each Street = Partial Lines, Not Connected)              ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📊 NEW DATA FILE: street_segments.csv
+   └─ 7,840 segments from 3,626 streets
+   └─ Each street divided into ~20 partial line segments
+   └─ Shows congestion variations WITHIN each street
+   └─ Lines follow actual crash locations on streets
+
+═══════════════════════════════════════════════════════════════════════════
+
+WHY SEGMENTS WORK:
+  ✓ Each street broken into SECTIONS (not just 1 dot)
+  ✓ Lots of congestion on 5th Ave? You see red on just that section
+  ✓ Clear 34th St? You see blue on that part only
+  ✓ NO lines connecting across the whole city
+
+═══════════════════════════════════════════════════════════════════════════
+
+TABLEAU SETUP (6 steps):
+
+1. OPEN TABLEAU
+   • File → Open
+   • Select: street_segments.csv
+   • Click "Street" when it appears as a dimension
+
+2. CONNECT DATA
+   • Drag to a new Worksheet
+   • You should see "Abc Street" and "1,000 records"
+
+3. BUILD THE BASE MAP
+   • Drag Longitude → COLUMNS
+   • Drag Latitude → ROWS
+   (You now have one dot per segment)
+
+4. DRAW THE LINES
+   • Drag Sequence → PATH (on the Marks panel)
+   • Drag Street → DETAIL
+   
+   This tells Tableau: "Connect each segment by Street, in Sequence order"
+   RESULT: Each street becomes a CONNECTED line following segment order
+
+5. COLOR BY CONGESTION
+   • Drag Congestion → COLOR
+   • Change color scheme: Blue-Red (or Red-Blue reversed)
+   • Edit colors:
+     - Blue = Safe (0.0-0.03)
+     - Green = Normal (0.03-0.06)
+     - Yellow = Busy (0.06-0.10)
+     - Red = Congested (0.10+)
+
+6. SIZE BY INCIDENTS
+   • Drag Incidents → SIZE
+   • Thicker lines = more crashes on that segment
+
+═══════════════════════════════════════════════════════════════════════════
+
+MARKS PANEL CHECKLIST:
+
+  ☑ Longitude → COLUMNS
+  ☑ Latitude → ROWS
+  ☑ Sequence → PATH ⭐ KEY!
+  ☑ Street → DETAIL (groups by street)
+  ☑ Congestion → COLOR (blue to red)
+  ☑ Incidents → SIZE (thickness)
+
+═══════════════════════════════════════════════════════════════════════════
+
+RESULT PREVIEW:
+
+  5th AVENUE (multiple segments):
+  ├─ Segment 1 (34th-42nd St): 🟦 BLUE (safe, 5 incidents)
+  ├─ Segment 2 (42nd-54th St): 🟨 YELLOW (busy, 18 incidents)
+  ├─ Segment 3 (54th-59th St): 🟥 RED (congested, 42 incidents)
+  └─ (Each segment is a separate line section)
+
+  BROADWAY:
+  ├─ Segment 1: 🟩 GREEN (12 incidents)
+  ├─ Segment 2: 🟥 RED (35 incidents)
+  └─ (Clear pattern of congestion WITHIN the street)
+
+═══════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+
+Q: Still looks like one giant connected line?
+A: Check that Street is on DETAIL (not missing)
+   Make sure Sequence is on PATH shelf
+
+Q: Lines don't look right?
+A: Right-click Sequence field → Change to "Continuous"
+   Sequence should be on PATH shelf, not elsewhere
+
+Q: Can't find PATH button?
+A: PATH is on the Marks panel when you have Sequence field
+   If no PATH button appears, make sure Sequence is a Number type
+
+Q: Want different colors?
+A: Edit COLOR legend: 
+   Right-click → Edit Colors → Select scheme
+
+═══════════════════════════════════════════════════════════════════════════
+
+WHAT YOU'LL SEE ON THE MAP:
+
+✓ 3,626+ streets visible
+✓ Colorful lines showing congestion VARIATIONS within streets
+✓ Some streets all red (high congestion everywhere)
+✓ Some streets red in spots, blue in others (mixed congestion)
+✓ Thick lines = more crashes
+✓ Thin lines = fewer incidents
+✓ NO ocean lines (all data NYC bounds only)
+✓ NO connections across the city
+
+═══════════════════════════════════════════════════════════════════════════
+
+SAVE & AUTO-UPDATE:
+
+1. Click Worksheet → Format → Shading options
+   (Make background light gray for better contrast)
+
+2. File → Save As → "NYC_Street_Segments_Heatmap"
+
+3. Data Source settings:
+   → Extract Refresh schedule (hourly from MongoDB)
+   → Your auto-update script keeps data fresh
+
+═══════════════════════════════════════════════════════════════════════════
+
+DATA BEHIND THE SCENES:
+
+Each row in street_segments.csv represents ONE visible segment:
+  Street: "5th Avenue"
+  Latitude: 40.7489
+  Longitude: -73.9680
+  Congestion: 0.087 (8.7% congestion)
+  Incidents: 28
+  Sequence: 1542 (draw order within the street)
+  Segment_Points: 12 (based on 12 crash coordinates)
+
+When Tableau draws this:
+  1. Groups all segments by Street name
+  2. Sorts them by Sequence number
+  3. Draws a LINE connecting them in order
+  4. Colors each segment by Congestion level
+  5. Makes thickness based on Incidents
+
+═══════════════════════════════════════════════════════════════════════════

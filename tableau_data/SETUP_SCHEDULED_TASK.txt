@@ -1,0 +1,133 @@
+================================================================================
+         WINDOWS SCHEDULED TASK SETUP - AUTO UPDATE TABLEAU DATA
+================================================================================
+
+This will automatically update your CSV files every hour so Tableau always has 
+fresh traffic data from MongoDB.
+
+STEP 1: Open Task Scheduler
+==========================
+1. Press: Windows Key + R
+2. Type: taskschd.msc
+3. Press: Enter
+   (Task Scheduler opens)
+
+STEP 2: Create a New Task
+========================
+1. In the right panel, click: "Create Task..."
+2. Fill in the General tab:
+   - Name: "Update Tableau Traffic Data"
+   - Description: "Auto-exports MongoDB traffic data to CSV for Tableau heat map"
+   - Check: "Run whether user is logged in or not"
+   - Check: "Run with highest privileges"
+
+STEP 3: Set the Trigger (When to Run)
+====================================
+1. Click the "Triggers" tab
+2. Click: "New..."
+3. Set trigger settings:
+   - Begin the task: "On a schedule"
+   - Repeat task every: "1 hour"
+   - Duration: "Indefinitely"
+   - Enabled: Check this box
+4. Click: "OK"
+
+STEP 4: Set the Action (What to Run)
+===================================
+1. Click the "Actions" tab
+2. Click: "New..."
+3. Set action settings:
+   - Action: "Start a program"
+   - Program/script: 
+     C:\Users\s558312\Documents\GitHub\BigDataFinal_TrafficApp\tableau_data\auto_update_tableau.bat
+   - Start in: 
+     C:\Users\s558312\Documents\GitHub\BigDataFinal_TrafficApp\tableau_data
+4. Click: "OK"
+
+STEP 5: Set Conditions (Optional but Recommended)
+================================================
+1. Click the "Conditions" tab
+2. Under "Power":
+   - Check: "Start the task only if the computer is on AC power"
+   - Check: "Wake the computer to run this task"
+3. Click: "OK"
+
+STEP 6: Finish
+=============
+1. Click: "OK" to save the task
+2. You'll be prompted for your Windows password
+3. Enter your password and click "OK"
+
+VERIFICATION
+============
+Your task should now be created. To verify:
+
+1. In Task Scheduler:
+   - Look for "Update Tableau Traffic Data" in the task list
+   - Right-click it → "Run" to test manually
+   - Check the "Last Run Result" should show "The task completed with an exit code (0)"
+
+2. Check the log file:
+   - Open: C:\Users\s558312\Documents\GitHub\BigDataFinal_TrafficApp\tableau_data\export_log.txt
+   - Should show timestamps of each run
+
+3. Check your CSV files:
+   - Look at modified times of:
+     * crash_heat_map_data.csv
+     * street_lines_heatmap.csv
+     * street_polylines.csv
+   - They should update every hour
+
+================================================================================
+
+TROUBLESHOOTING
+===============
+
+Problem: Task doesn't run
+Solution:
+  - Make sure Python is in your PATH
+  - Test: Open PowerShell and type: python --version
+  - If not found, reinstall Python and check "Add to PATH"
+
+Problem: Task runs but CSV files don't update
+Solution:
+  - Check Windows Event Viewer for errors:
+    * Event Viewer → Windows Logs → Application
+    * Look for errors from Task Scheduler
+  - Try running the batch file manually first:
+    * Open PowerShell
+    * Navigate to tableau_data folder
+    * Run: .\auto_update_tableau.bat
+
+Problem: MongoDB connection errors
+Solution:
+  - Verify MongoDB is running and accessible
+  - Check secrets.env has correct MONGODB_URI
+  - Test connection: 
+    python -c "from pymongo import MongoClient; import os; from dotenv import load_dotenv; load_dotenv('../secrets.env'); print(MongoClient(os.getenv('MONGODB_URI')).server_info())"
+
+================================================================================
+
+NEXT STEPS
+==========
+
+1. Complete the 6 steps above to create the scheduled task
+2. Your Tableau data will now refresh every hour automatically
+3. In Tableau, you'll need to refresh the data source to see updates:
+   - File → Refresh Data
+   - Or right-click the data source → Refresh
+
+OPTIONAL: If you want more frequent updates, change Step 3 to:
+   - Repeat task every: "15 minutes" (every 15 mins)
+   - Or "30 minutes" (every half hour)
+
+OPTIONAL: To disable auto-updates temporarily, in Task Scheduler:
+   - Right-click the task
+   - Select "Disable"
+   - To re-enable: Right-click → "Enable"
+
+================================================================================
+
+Your heat map will now stay fresh with real-time traffic data! 🔄
+
+Any issues? Check export_log.txt for timestamps of successful runs.

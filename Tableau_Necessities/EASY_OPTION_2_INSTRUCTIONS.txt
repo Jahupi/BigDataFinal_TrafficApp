@@ -1,0 +1,291 @@
+================================================================================
+        CREATE TABLEAU HEAT MAP WITH COLORED LINES ON STREETS
+                       OPTION 2 - STREET ROUTES
+================================================================================
+
+This guide shows NYC streets as COLORED LINES on a map:
+• Red lines = High congestion streets
+• Blue lines = Low congestion streets
+• Lines follow actual street locations on the map
+
+TIME: 10 minutes
+DIFFICULTY: Medium (but easy to follow)
+
+================================================================================
+                        BEFORE YOU START
+================================================================================
+
+YOU NEED:
+✓ Tableau Desktop installed
+✓ File: street_polylines.csv (in Tableau_Necessities folder)
+✓ This guide (for reference)
+
+================================================================================
+                    STEP 1: OPEN TABLEAU DESKTOP
+================================================================================
+
+1. Click Windows Start button (bottom left corner)
+2. Type: Tableau
+3. Click: Tableau Desktop
+
+Wait 10-15 seconds for Tableau to open.
+
+================================================================================
+                  STEP 2: CONNECT TO THE DATA FILE
+================================================================================
+
+1. Click: FILE (top left menu)
+2. Click: NEW
+3. Click: CONNECT TO DATA
+4. On the left, click: TEXT FILE
+   (A file browser window opens)
+
+5. Navigate to this folder:
+   C:\Users\s558312\Documents\GitHub\BigDataFinal_TrafficApp\Tableau_Necessities\
+
+6. Find and click: street_polylines.csv
+7. Click: OPEN
+
+✓ Data is now loaded!
+✓ You should see column names on the left side panel
+
+================================================================================
+                    STEP 3: GO TO SHEET 1
+================================================================================
+
+At the bottom of the screen, click: SHEET 1
+
+Now you're in the editor where you'll build the visualization.
+
+================================================================================
+                  STEP 4: SET UP THE MAP (LATITUDE/LONGITUDE)
+================================================================================
+
+LEFT PANEL - You'll see column names listed
+
+DRAG 1 - LATITUDE:
+1. Look for: Latitude (should be under "Dimensions" section)
+2. Click and HOLD on "Latitude"
+3. DRAG it UP to the top area where it says "ROWS"
+4. Release it
+
+DRAG 2 - LONGITUDE:
+1. Look for: Longitude (in Dimensions section)
+2. Click and HOLD on "Longitude"
+3. DRAG it to the TOP LEFT area where it says "COLUMNS"
+4. Release it
+
+✓ A MAP OF NEW YORK APPEARS!
+✓ You should see dots scattered across NYC
+
+================================================================================
+              STEP 5: CONNECT DOTS INTO LINES (ADD PATH)
+================================================================================
+
+This step connects the dots to create actual street lines.
+
+DRAG 3 - SEQUENCE:
+1. Look for: Sequence (under Dimensions section)
+2. Click and HOLD on "Sequence"
+3. DRAG it to the RIGHT SIDE where it says "PATH" (in the Marks panel)
+   (Look for the Marks section with buttons: Color, Size, Label, Detail, Tooltip)
+4. Release it
+
+✓ The dots now CONNECT WITH LINES!
+✓ Each street now shows as a connected line
+
+================================================================================
+                    STEP 6: ADD STREET NAMES (DETAIL)
+================================================================================
+
+This helps identify which line is which street.
+
+DRAG 4 - STREET:
+1. Look for: Street (under Dimensions section)
+2. Click and HOLD on "Street"
+3. DRAG it to the RIGHT SIDE where it says "DETAIL" (Marks panel)
+4. Release it
+
+✓ Now when you hover over lines, you see street names
+
+================================================================================
+                  STEP 7: ADD COLOR BY CONGESTION
+================================================================================
+
+This makes Red = High Congestion, Blue = Low Congestion
+
+DRAG 5 - CONGESTION_INDEX:
+1. Look for: Congestion_Index (under Measures section - numbers)
+2. Click and HOLD on "Congestion_Index"
+3. DRAG it to the RIGHT SIDE where it says "COLOR" (Marks panel)
+4. Release it
+
+✓ Lines now turn RED and BLUE!
+✓ Red lines = congested streets
+✓ Blue lines = safe streets
+
+================================================================================
+                    STEP 8: CHANGE TO LINE MARK TYPE
+================================================================================
+
+RIGHT SIDE PANEL - Find the Mark Type dropdown
+
+1. Look at the RIGHT SIDE panel (Marks section)
+2. Find the button/dropdown that shows a circle or says "Automatic"
+3. Click it
+4. Select: LINE
+
+✓ Visual changes to solid lines instead of dots
+
+================================================================================
+                  STEP 9: ADJUST OPACITY (OPTIONAL)
+================================================================================
+
+This makes overlapping lines more visible.
+
+RIGHT SIDE PANEL - Marks section:
+
+1. Click the COLOR button (in Marks)
+2. Look for "Opacity" slider
+3. Drag it to about 70%
+
+This makes lines slightly transparent so overlapping lines are visible.
+
+================================================================================
+                 STEP 10: SET COLOR PALETTE (RED = CONGESTION)
+================================================================================
+
+RIGHT SIDE - Find the Color Legend (colorful bar on the right edge)
+
+1. Click the small ARROW/TRIANGLE at the top right of the color legend
+2. Click: EDIT COLORS
+3. A dialog box opens
+4. Find "Palette" dropdown
+5. Click it and select: RED-BLUE
+6. Make sure RED is on the RIGHT side (represents high values)
+7. Click: OK
+
+✓ Red = High congestion (bad), Blue = Low congestion (good)
+
+================================================================================
+                        STEP 11: SAVE YOUR MAP
+================================================================================
+
+TOP LEFT - File Menu:
+
+1. Click: FILE
+2. Click: SAVE AS
+3. Type the name: NYC_Traffic_Lines_Streets
+4. Click: SAVE
+
+✓ Your heat map is now SAVED!
+
+================================================================================
+                      VIEWING YOUR HEAT MAP
+================================================================================
+
+YOU SHOULD NOW SEE:
+
+✓ Map of New York City
+✓ Colored LINES along streets (not dots)
+✓ RED lines = High congestion (busy/dangerous streets)
+✓ BLUE lines = Low congestion (safe streets)
+✓ Lines follow actual street locations on map
+✓ Hover over lines to see street name
+✓ Can zoom with mouse wheel
+✓ Can drag to pan around
+
+TOP CONGESTION STREETS (Red lines):
+• 12th Avenue (West Side Highway)
+• 3rd Avenue (Manhattan)
+• FDR Drive (East Side)
+• Major highways and intersections
+
+SAFE STREETS (Blue lines):
+• Outer borough streets
+• Residential areas
+• Less traveled routes
+
+================================================================================
+                    TEST THE INTERACTIVITY
+================================================================================
+
+TRY THESE:
+
+1. HOVER over a RED line
+   → Street name should appear
+
+2. ZOOM IN with mouse wheel
+   → Map zooms to show more detail
+
+3. ZOOM OUT with mouse wheel
+   → See entire city
+
+4. DRAG the map with your mouse
+   → Pan to different areas
+
+5. LOOK for RED clusters
+   → Areas with high congestion
+
+================================================================================
+                    IF SOMETHING ISN'T RIGHT
+================================================================================
+
+PROBLEM: Map doesn't appear
+SOLUTION:
+  1. Make sure Latitude is on ROWS shelf
+  2. Make sure Longitude is on COLUMNS shelf
+  3. Right-click Latitude → Geographic Role → Latitude
+  4. Right-click Longitude → Geographic Role → Longitude
+
+PROBLEM: Lines don't show (only dots)
+SOLUTION:
+  1. Make sure Sequence is on PATH button
+  2. Make sure Mark Type is set to LINE (not Circle)
+
+PROBLEM: All one color (not red/blue gradient)
+SOLUTION:
+  1. Make sure Congestion_Index is on COLOR button
+  2. Click COLOR → EDIT COLORS → Select RED-BLUE palette
+
+PROBLEM: Lines overlap too much
+SOLUTION:
+  1. Adjust opacity to 50-60%
+  2. Try zooming in to see specific streets
+
+================================================================================
+                    AUTO-UPDATE SETTING
+================================================================================
+
+Your data automatically updates every hour!
+
+To see the latest:
+
+In Tableau:
+1. Press: CTRL + R (keyboard shortcut)
+   OR
+2. Click: FILE → REFRESH DATA
+
+The map refreshes with the latest NYC traffic data.
+
+================================================================================
+                    YOU'RE DONE! 🎉
+================================================================================
+
+Your Tableau heat map is complete!
+
+It shows:
+✓ NYC streets as colored LINES (not dots)
+✓ Red = Congested streets
+✓ Blue = Safe streets
+✓ Real data that updates hourly
+✓ Professional visualization
+
+EXPORT OR SHARE:
+• File → Export → Image (to save as picture)
+• File → Export → PDF (to share or print)
+• File → Publish → Tableau Server (to share with team)
+
+Enjoy your heat map! 🗺️
+
+================================================================================

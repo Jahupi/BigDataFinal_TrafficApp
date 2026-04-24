@@ -1,0 +1,164 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║              STREET SEGMENTS vs OLD APPROACH - COMPARISON                  ║
+║                                                                            ║
+║  OLD (street_lines_clean.csv):  ONE dot per street → ALL connected        ║
+║  NEW (street_segments.csv):     MANY dots per street → PARTIAL lines      ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+THE PROBLEM WITH OLD APPROACH:
+═══════════════════════════════════════════════════════════════════════════
+
+Input:  500 streets, 1 average point each
+        Avenue A: (40.72, -73.97)
+        Avenue B: (40.71, -73.96)
+        Street 1: (40.73, -73.95)
+        ...
+
+What Tableau did: Connected them all together
+        Avenue A ───> Avenue B ───> Street 1 ───> ...
+                (ONE GIANT CONNECTED LINE across entire city)
+
+Result: 🔴 WRONG - Can't tell streets apart, all connected in mess
+
+
+THE SOLUTION WITH NEW APPROACH:
+═══════════════════════════════════════════════════════════════════════════
+
+Input: 3,626 streets × avg 2-3 segments each = 7,840 total segments
+
+Example - 1 AVENUE (showing multiple segments):
+  Segment 1: (40.741, -73.976) Congestion=0.03 Incidents=2 Seq=1
+  Segment 2: (40.648, -74.021) Congestion=0.03 Incidents=3 Seq=2
+  Segment 3: (40.726, -73.987) Congestion=0.03 Incidents=3 Seq=3
+  ...
+  Segment 19: (40.786, -73.943) Congestion=0.04 Incidents=4 Seq=19
+
+What Tableau does with Sequence + PATH:
+  1. Takes all 19 segments with Street="1 AVENUE"
+  2. Sorts by Sequence (1, 2, 3... 19)
+  3. Draws ONE continuous line through all 19 points
+  4. Colors each point by Congestion (blue/yellow/red)
+  5. Sizes each point by Incidents (thickness)
+
+Result: 🟢 CORRECT - 1 Avenue shows as ONE traceable line with congestion
+        variations visible along its length!
+
+
+DATA STRUCTURE COMPARISON:
+═══════════════════════════════════════════════════════════════════════════
+
+OLD street_lines_clean.csv:
+└─ Street | Avg_Latitude | Avg_Longitude | Incidents | Congestion
+   ─────────────────────────────────────────────────────────
+   1 AVE  | 40.751       | -73.972       | 127       | 0.04
+
+Result: One dot per street (can't trace the actual path)
+
+
+NEW street_segments.csv:
+└─ Street | Latitude     | Longitude     | Incidents | Congestion | Sequence
+   ────────────────────────────────────────────────────────────────────────
+   1 AVE  | 40.741       | -73.976       | 2         | 0.03       | 1
+   1 AVE  | 40.648       | -74.021       | 3         | 0.03       | 2
+   1 AVE  | 40.726       | -73.987       | 3         | 0.03       | 3
+   ...
+   1 AVE  | 40.786       | -73.943       | 4         | 0.04       | 19
+
+Result: 19 individual points that trace 1 Avenue's actual path!
+
+
+TABLEAU MARKS PANEL SETUP:
+═══════════════════════════════════════════════════════════════════════════
+
+                    ┌─────────────────────────┐
+                    │      MARKS PANEL        │
+                    └─────────────────────────┘
+                              ▼
+        ┌───────────┬────────────────────┐
+        │  SHELVES  │     FIELDS         │
+        ├───────────┼────────────────────┤
+        │ COLUMNS   │ Longitude          │
+        │ ROWS      │ Latitude           │
+        │ Abc       │ Street         ← DETAIL
+        │ Color     │ Congestion     ← COLOR
+        │ Size      │ Incidents      ← SIZE
+        │ PATH      │ Sequence       ← PATH ⭐ CRITICAL!
+        │ Label     │                 │
+        └───────────┴────────────────────┘
+
+Key: Sequence on PATH tells Tableau to connect points IN ORDER per street
+
+
+VISUAL PREVIEW OF RESULT:
+═══════════════════════════════════════════════════════════════════════════
+
+NYC MAP with Street Segments:
+
+    ↑ North
+    │
+   📍 Segment 1 (🔵 Blue - Safe)
+    │  \
+   📍──📍 Segment 2 (🟨 Yellow - Busy)
+         \
+         📍 Segment 3 (🔴 Red - Congested)
+          \
+           📍 Segment 4 (🟨 Yellow)
+
+
+Each street is its own independent line
+Lines don't connect to other streets
+Congestion colors vary WITHIN each street
+You can clearly identify which street is which
+
+
+EXAMPLE READING THE MAP:
+═══════════════════════════════════════════════════════════════════════════
+
+Looking at your NYC map, you can now see:
+
+✓ 5th Avenue: Mostly BLUE in Midtown, YELLOW near Central Park
+  (You can see exactly where it gets congested!)
+
+✓ Broadway: RED between Times Square and below
+  (High congestion in that section specifically shown)
+
+✓ FDR Drive: GREEN throughout most of Manhattan
+  (Consistent traffic but not too bad)
+
+✓ Broadway: Mix of all colors
+  (Clear variation of congestion from segment to segment)
+
+This tells you EXACTLY where on each street problems occur!
+
+
+TROUBLESHOOTING:
+═══════════════════════════════════════════════════════════════════════════
+
+Q: It still looks like a connected mess?
+A: Make sure Sequence is on PATH shelf
+   Check that Street is on DETAIL shelf
+   RIGHT-CLICK Sequence → Make sure it's "Continuous" (not Discrete)
+
+Q: Lines look broken/disconnected?
+A: Sequence field must be on PATH (not on columns/rows)
+   Sequence should be numeric, in order
+
+Q: How do I know it's working?
+A: Each street should look like ONE connected line
+   Different streets should NOT connect to each other
+   Lines should follow actual street locations on the map
+   Colors should show congestion variations WITHIN the street
+
+Q: Can I see street names on the map?
+A: Add Street to TOOLTIP:
+   Drag Street → TOOLTIP
+   Now hover over any segment to see street name + congestion data
+
+
+═════════════════════════════════════════════════════════════════════════════
+READY TO GO!
+
+File: street_segments.csv (7,840 segments from 3,626 streets)
+Guide: STREET_SEGMENTS_GUIDE.txt (step-by-step Tableau setup)
+Auto-update: Updated to regenerate segments hourly from MongoDB
+═════════════════════════════════════════════════════════════════════════════

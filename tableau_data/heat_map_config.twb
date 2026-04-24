@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbook source-build="18.1.0" version="10.0" xmlns="http://tableauserver.com/api">
+  <preferences/>
+  <datasources>
+    <datasource caption="crash_heat_map_data" name="crash_heat_map_data" version="10.0">
+      <connection class="textscan" dbname="crash_heat_map_data.csv" server=""/>
+      <column caption="Latitude" datatype="real" name="[Latitude]" role="measure" type="quantitative"/>
+      <column caption="Longitude" datatype="real" name="[Longitude]" role="measure" type="quantitative"/>
+      <column caption="Street" datatype="string" name="[Street]" role="dimension" type="nominal"/>
+      <column caption="Incident_Count" datatype="integer" name="[Incident_Count]" role="measure" type="quantitative"/>
+      <column caption="Injured" datatype="integer" name="[Injured]" role="measure" type="quantitative"/>
+      <column caption="Killed" datatype="integer" name="[Killed]" role="measure" type="quantitative"/>
+      <column caption="Congestion_Index" datatype="real" name="[Congestion_Index]" role="measure" type="quantitative"/>
+    </datasource>
+  </datasources>
+</workbook>

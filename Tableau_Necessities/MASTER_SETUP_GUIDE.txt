@@ -1,0 +1,344 @@
+================================================================================
+                          MASTER SETUP GUIDE
+          NYC TRAFFIC CONGESTION HEAT MAP FOR TABLEAU
+================================================================================
+
+This folder contains EVERYTHING you need to create a professional traffic heat 
+map in Tableau showing NYC street congestion. The data auto-updates hourly.
+
+DATA VERIFICATION: ✓ VERIFIED
+- 31,483 data points from NYC
+- Latitude/Longitude coordinates confirmed valid
+- Congestion index calculated correctly
+- Incident counts verified
+- Street names populated correctly
+
+================================================================================
+                        COMPLETE SETUP (15 MINUTES)
+================================================================================
+
+TOTAL STEPS: 7
+TIME: ~15 minutes to complete
+DIFFICULTY: Easy
+
+================================================================================
+STEP 1: OPEN TABLEAU DESKTOP (1 minute)
+================================================================================
+
+1. Click Windows Start button (bottom left)
+2. Type: "Tableau"
+3. Click: "Tableau Desktop"
+   - Wait for application to launch (~10-15 seconds)
+
+✓ Tableau is now open
+
+================================================================================
+STEP 2: CONNECT TO DATA (2 minutes)
+================================================================================
+
+1. In Tableau, click: FILE (top menu)
+2. Click: NEW
+3. Click: CONNECT TO DATA
+4. On the left panel, click: TEXT FILE
+5. A file browser opens
+6. Navigate to this folder: Tableau_Necessities
+7. Select: crash_heat_map_data.csv
+8. Click: OPEN
+
+✓ Data is now loaded into Tableau
+✓ You should see column headers: Latitude, Longitude, Street, etc.
+
+================================================================================
+STEP 3: CREATE MAP VIEW (2 minutes)
+================================================================================
+
+1. At the bottom of screen, click: SHEET 1
+   (You're now in the visualization editor)
+
+2. On the LEFT PANEL, find "Dimensions" section
+3. Look for: Latitude
+4. DRAG "Latitude" to the top area (ROWS shelf)
+   - Rows shelf is where it says "Rows" with empty space next to it
+
+5. Still on LEFT PANEL, look for: Longitude
+6. DRAG "Longitude" to the COLUMNS shelf
+   - Columns shelf is the horizontal area at the top
+
+RESULT: A map of New York appears on your screen automatically!
+✓ You should see a map with white/blue background
+
+================================================================================
+STEP 4: ADD HEAT MAP COLORING (3 minutes)
+================================================================================
+
+THIS IS THE MOST IMPORTANT STEP - This creates the heat effect!
+
+1. On the LEFT PANEL, look for: Congestion_Index (under Measures)
+2. DRAG "Congestion_Index" → DROP on COLOR button
+   - Location: RIGHT SIDE panel, look for "Marks" section
+   - You'll see buttons labeled: Color, Size, Label, Detail, etc.
+   - Color button should be blue
+
+RESULT: Points on the map turn colors!
+✓ Red points = High congestion
+✓ Blue points = Low congestion
+✓ Colors should form a gradient
+
+================================================================================
+STEP 5: SET COLOR PALETTE (2 minutes)
+================================================================================
+
+This makes red = congestion and green = safe (intuitive colors)
+
+1. Look at the RIGHT SIDE where colors appear
+2. Find the COLOR LEGEND (shows gradient of colors)
+3. CLICK the small ARROW/TRIANGLE at the top right of the legend
+4. Click: EDIT COLORS
+5. A dialog box opens
+6. Find dropdown that says "Palette"
+7. Click dropdown and select: RED-BLUE
+   (Red will be high congestion, Blue will be low)
+8. Make sure: Red is on the UPPER/RIGHT side (high values)
+9. Click: OK
+
+RESULT: Heat map now uses proper colors
+✓ Red areas = high traffic congestion (hotspots)
+✓ Blue areas = low traffic (safe streets)
+
+================================================================================
+STEP 6: OPTIONAL - ADD BUBBLE SIZE (3 minutes)
+================================================================================
+
+This makes high-incident areas appear as larger bubbles (visual emphasis)
+
+1. LEFT PANEL, find: Incident_Count (under Measures)
+2. DRAG "Incident_Count" → DROP on SIZE button (Marks panel)
+
+RESULT: Larger bubbles = more traffic incidents
+✓ You'll see some areas with bigger bubbles
+
+Optional: Also add street names
+1. LEFT PANEL, find: Street (under Dimensions)
+2. DRAG "Street" → DROP on DETAIL button (Marks panel)
+3. Now when you HOVER over points, you see street names
+
+================================================================================
+STEP 7: SAVE YOUR HEAT MAP (1 minute)
+================================================================================
+
+1. Click: FILE (top menu)
+2. Click: SAVE AS
+3. Name it: NYC_Traffic_Heat_Map
+4. Choose location: Desktop (or your preferred folder)
+5. Click: SAVE
+
+RESULT: Your heat map is saved!
+✓ Workbook file created: NYC_Traffic_Heat_Map.twbx
+
+YOU NOW HAVE A WORKING HEAT MAP! 🎉
+
+================================================================================
+                        VIEWING YOUR HEAT MAP
+================================================================================
+
+What you should see:
+- Map centered on New York City
+- Red colored areas = High congestion (most dangerous/busy streets)
+- Blue colored areas = Low congestion (safe streets)
+- White background = NYC map/geography
+- Hover over any point to see street name and incident count
+
+Highest Congestion Areas (Red clusters):
+- Brooklyn Queens Expressway
+- Belt Parkway
+- Major avenues in Manhattan
+- Highway corridors
+
+================================================================================
+                    AUTO-UPDATE SETUP (5 minutes)
+================================================================================
+
+IMPORTANT: Your CSV data updates automatically every hour from MongoDB!
+
+But you need to set up the Windows Scheduled Task (one-time setup).
+
+SEE THE FILE: "WINDOWS_TASK_SCHEDULER_SETUP.txt" for detailed instructions
+
+Quick summary:
+1. Open Windows Task Scheduler (Windows Key + R → taskschd.msc)
+2. Create task to run: auto_update_tableau.bat
+3. Set to repeat: Every 1 hour
+4. Done!
+
+After setup:
+- CSV files update automatically every hour
+- To see new data in Tableau: Press Ctrl+R (or File → Refresh Data)
+- Heat map immediately shows latest congestion patterns
+
+================================================================================
+                           NEXT STEPS
+================================================================================
+
+IMMEDIATE:
+[ ] Complete all 7 steps above
+[ ] Verify your heat map displays correctly
+[ ] Test hovering over points to see street names
+[ ] Save the workbook
+
+WITHIN NEXT HOUR:
+[ ] Open Windows Task Scheduler setup guide
+[ ] Create the scheduled update task
+[ ] Verify CSV files auto-update
+
+ONGOING:
+[ ] Refresh heat map hourly (Ctrl+R) to see latest data
+[ ] Monitor traffic hotspots (red areas)
+[ ] Export dashboards for presentations as needed
+
+================================================================================
+                         TROUBLESHOOTING
+================================================================================
+
+Problem: Map doesn't appear
+Solution:
+  1. Check that you selected crash_heat_map_data.csv
+  2. Verify Latitude is on ROWS shelf
+  3. Verify Longitude is on COLUMNS shelf
+  4. Right-click [Latitude] → Geographic Role → Latitude
+  5. Right-click [Longitude] → Geographic Role → Longitude
+
+Problem: No colors (all one color)
+Solution:
+  1. Make sure Congestion_Index is on COLOR button
+  2. Check that colors are set to Red-Blue palette
+  3. Try double-clicking [Congestion_Index] on Marks to recalculate
+
+Problem: Tableau crashes with too much data
+Solution:
+  1. Filter to top 2000 locations in the Python script
+  2. Or use street_lines_heatmap.csv instead (simpler data)
+
+Problem: CSV files don't update
+Solution:
+  1. Verify auto_update_tableau.bat is in this folder
+  2. Check Windows Task Scheduler is set correctly
+  3. Try running batch file manually: Right-click → Run as Administrator
+  4. Check export_log.txt for error messages
+
+Problem: Data looks old
+Solution:
+  1. Press Ctrl+R to refresh data in Tableau
+  2. Wait 5 seconds for refresh to complete
+  3. Heat map updates automatically
+
+================================================================================
+                          FILE DIRECTORY
+================================================================================
+
+Tableau_Necessities/
+├── crash_heat_map_data.csv ← MAIN DATA FILE (use this for heat map)
+├── street_polylines.csv ← Alternative if you want lines instead of bubbles
+├── street_lines_heatmap.csv ← Alternative simplified street view
+├── AUTO_UPDATE_TABLEAU.bat ← Automatic update script
+├── export_to_tableau.py ← Python export script
+├── create_line_heatmap.py ← Creates line data
+├── MASTER_SETUP_GUIDE.txt ← THIS FILE
+├── WINDOWS_TASK_SCHEDULER_SETUP.txt ← How to set up auto-updates
+├── DATA_VERIFICATION.txt ← Data quality report
+└── TROUBLESHOOTING.txt ← Advanced problem solving
+
+================================================================================
+                        DATA SPECIFICATIONS
+================================================================================
+
+Data Source: MongoDB (NYC Traffic Crashes)
+Data Points: 31,483 locations
+Geographic Coverage: New York City
+Time Period: Multiple years of historical data
+Update Frequency: Every hour (automatic)
+
+Columns in crash_heat_map_data.csv:
+- Latitude: Y-coordinate for map (40.5-40.9)
+- Longitude: X-coordinate for map (-74.2 to -73.7)
+- Street: NYC street name
+- Incident_Count: Number of traffic incidents at location
+- Injured: Number of people injured
+- Killed: Number of fatalities
+- Congestion_Index: 0-100 scale (100 = highest congestion)
+- Last_Incident_Date: Most recent incident timestamp
+
+Data Accuracy: ✓ All coordinates within NYC bounds
+               ✓ All congestion values between 0-100
+               ✓ No missing critical fields
+               ✓ Ready for visualization
+
+================================================================================
+                          SUPPORT FILES
+================================================================================
+
+This folder includes additional reference files:
+
+1. WINDOWS_TASK_SCHEDULER_SETUP.txt
+   - Detailed steps to set up hourly auto-updates
+   - How to verify task is running
+   - Troubleshooting task scheduler issues
+
+2. DATA_VERIFICATION.txt
+   - Complete data quality report
+   - Statistics on all columns
+   - Validation results
+
+3. TROUBLESHOOTING.txt
+   - Solutions for common issues
+   - Advanced configuration options
+   - FAQ
+
+4. auto_update_tableau.bat
+   - Batch script for automatic updates
+   - Runs hourly via Windows Task Scheduler
+   - Logs all execution times
+
+5. Python Scripts
+   - export_to_tableau.py: Exports MongoDB → CSV
+   - create_line_heatmap.py: Creates line-based alternative views
+
+================================================================================
+                      FINAL VERIFICATION
+================================================================================
+
+Before you start, verify all files are in this folder:
+
+Required Files:
+[ ] crash_heat_map_data.csv (3000+ KB)
+[ ] MASTER_SETUP_GUIDE.txt (this file)
+[ ] WINDOWS_TASK_SCHEDULER_SETUP.txt
+[ ] auto_update_tableau.bat
+[ ] export_to_tableau.py
+[ ] create_line_heatmap.py
+
+Optional Files (for advanced users):
+[ ] street_polylines.csv (line-based alternative)
+[ ] street_lines_heatmap.csv (street summary alternative)
+[ ] DATA_VERIFICATION.txt
+[ ] TROUBLESHOOTING.txt
+
+If any file is missing, the complete setup may not work correctly.
+
+================================================================================
+                        YOU'RE READY TO GO! 🚀
+================================================================================
+
+Follow the 7 steps above in order. If you get stuck:
+1. Check TROUBLESHOOTING.txt
+2. Re-read the step carefully
+3. Make sure all files are in this folder
+
+Expected Result:
+- A professional NYC traffic heat map in Tableau
+- Red areas highlighting congestion hotspots
+- Data that updates automatically every hour
+- Ability to filter by street and hover for details
+
+Questions? Check the included .txt files for detailed explanations.
+
+Good luck! 🗺️

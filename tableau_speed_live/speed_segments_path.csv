@@ -257,7 +257,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616257,BQE N ATLANTIC AVENUE - LEONARD STREET,Brooklyn,10,40.7001405,-73.99584,0.0,0.0,2017-04-27T14:07:03.000,No recent speed status,Severe congestion
 4616257,BQE N ATLANTIC AVENUE - LEONARD STREET,Brooklyn,11,40.7004504,-73.995421,0.0,0.0,2017-04-27T14:07:03.000,No recent speed status,Severe congestion
 4616257,BQE N ATLANTIC AVENUE - LEONARD STREET,Brooklyn,12,40.7007905,-73.994881,0.0,0.0,2017-04-27T14:07:03.000,No recent speed status,Severe congestion
-4616257,BQE N ATLANTIC AVENUE - LEONARD STREET,Brooklyn,13,40.7010805,-7.0,0.0,0.0,2017-04-27T14:07:03.000,No recent speed status,Severe congestion
 4616235,BQE N LEONARD STREET - 46TH STREET,Brooklyn,1,40.69153,-73.99911,29.83,234.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
 4616235,BQE N LEONARD STREET - 46TH STREET,Brooklyn,2,40.6922605,-73.99937,29.83,234.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
 4616235,BQE N LEONARD STREET - 46TH STREET,Brooklyn,3,40.6928906,-73.99937,29.83,234.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
@@ -270,7 +269,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616235,BQE N LEONARD STREET - 46TH STREET,Brooklyn,10,40.7001405,-73.99584,29.83,234.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
 4616235,BQE N LEONARD STREET - 46TH STREET,Brooklyn,11,40.7004504,-73.995421,29.83,234.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
 4616235,BQE N LEONARD STREET - 46TH STREET,Brooklyn,12,40.7007905,-73.994881,29.83,234.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
-4616235,BQE N LEONARD STREET - 46TH STREET,Brooklyn,13,40.7010805,-73.0,29.83,234.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
 4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,1,40.6757405,-74.00126,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
 4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,2,40.6765204,-74.0018,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
 4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,3,40.67817,-74.003221,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
@@ -280,10 +278,9 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,7,40.68003,-74.003441,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
 4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,8,40.6806205,-74.003161,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
 4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,9,40.68153,-74.00273,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
-4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,10,40.6853005,-74.891,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
-4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,11,40.68726,-73.999951,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
-4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,12,40.6892405,-73.99899,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
-4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,13,40.68972,-73.9988,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
+4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,10,40.68726,-73.999951,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
+4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,11,40.6892405,-73.99899,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
+4616229,BQE S - GOW S ALTANTIC AVENUE - 9TH STREET,Brooklyn,12,40.68972,-73.9988,42.25,164.0,2017-05-05T10:26:51.000,Normal,Free flow
 4616232,BQE S 46TH STREET - LEONARD STREET,Brooklyn,1,40.71772,-73.94831,11.81,580.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
 4616232,BQE S 46TH STREET - LEONARD STREET,Brooklyn,2,40.71862,-73.946851,11.81,580.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
 4616232,BQE S 46TH STREET - LEONARD STREET,Brooklyn,3,40.72016,-73.94432,11.81,580.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
@@ -331,19 +328,17 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616220,GOW N 92ND STREET - 7TH AVENUE,Brooklyn,7,40.63049,-74.01676,29.83,141.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
 4616220,GOW N 92ND STREET - 7TH AVENUE,Brooklyn,8,40.63239,-74.016061,29.83,141.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
 4616220,GOW N 92ND STREET - 7TH AVENUE,Brooklyn,9,40.63336,-74.01586,29.83,141.0,2017-05-05T10:26:51.000,Normal,Moderate traffic
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,1,40.6756,-74.841,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,2,40.67643,-74.001241,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,3,40.6772405,-74.001741,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,4,40.6783605,-74.002531,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,5,40.67925,-74.00331,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,6,40.6795705,-74.00341,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,7,40.68001,-74.00332,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,8,40.6805806,-74.003031,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,9,40.6814704,-74.0026,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,10,40.68522,-74.76,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,11,40.6872004,-73.999811,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,12,40.6892206,-73.99885,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
-4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,13,40.68972,-73.99,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,1,40.67643,-74.001241,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,2,40.6772405,-74.001741,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,3,40.6783605,-74.002531,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,4,40.67925,-74.00331,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,5,40.6795705,-74.00341,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,6,40.68001,-74.00332,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,7,40.6805806,-74.003031,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,8,40.6814704,-74.0026,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,9,40.6872004,-73.999811,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,10,40.6892206,-73.99885,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
+4616223,GOW N 9TH STREET - ATLANTIC AVENUE,Brooklyn,11,40.68972,-73.99,11.18,330.0,2017-05-05T10:26:51.000,Normal,Heavy congestion
 4616226,GOW S 7TH AVENUE - 92ND STREET,Brooklyn,1,40.61632,-74.0263,47.85,90.0,2017-05-05T10:26:51.000,Normal,Free flow
 4616226,GOW S 7TH AVENUE - 92ND STREET,Brooklyn,2,40.61928,-74.02375,47.85,90.0,2017-05-05T10:26:51.000,Normal,Free flow
 4616226,GOW S 7TH AVENUE - 92ND STREET,Brooklyn,3,40.6237206,-74.019951,47.85,90.0,2017-05-05T10:26:51.000,Normal,Free flow
@@ -431,7 +426,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616337,11th ave n ganservoort - 12th ave @ 40th st,Manhattan,10,40.7537504,-74.00704,8.08,645.0,2017-05-05T10:21:49.000,Normal,Severe congestion
 4616337,11th ave n ganservoort - 12th ave @ 40th st,Manhattan,11,40.75721,-74.00463,8.08,645.0,2017-05-05T10:21:49.000,Normal,Severe congestion
 4616337,11th ave n ganservoort - 12th ave @ 40th st,Manhattan,12,40.76003,-74.002631,8.08,645.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616337,11th ave n ganservoort - 12th ave @ 40th st,Manhattan,13,40.7607405,-7.0,8.08,645.0,2017-05-05T10:21:49.000,Normal,Severe congestion
 4616325,11th ave s ganservoort - west st @ spring st,Manhattan,1,40.73933,-74.01004,21.13,156.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
 4616325,11th ave s ganservoort - west st @ spring st,Manhattan,2,40.73895,-74.01012,21.13,156.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
 4616325,11th ave s ganservoort - west st @ spring st,Manhattan,3,40.7376,-74.010021,21.13,156.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
@@ -439,14 +433,13 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616325,11th ave s ganservoort - west st @ spring st,Manhattan,5,40.72912,-74.010781,21.13,156.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
 4616325,11th ave s ganservoort - west st @ spring st,Manhattan,6,40.72619,-74.011131,21.13,156.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
 4616338,12th Ave N 40th - 57th St,Manhattan,1,40.7607,-74.002141,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616338,12th Ave N 40th - 57th St,Manhattan,2,40.76212,-74.91,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616338,12th Ave N 40th - 57th St,Manhattan,3,40.76335,-73.999271,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616338,12th Ave N 40th - 57th St,Manhattan,4,40.76491,-73.99805,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616338,12th Ave N 40th - 57th St,Manhattan,5,40.7667406,-73.996681,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616338,12th Ave N 40th - 57th St,Manhattan,6,40.7693,-73.994801,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616338,12th Ave N 40th - 57th St,Manhattan,7,40.7699605,-73.994521,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616338,12th Ave N 40th - 57th St,Manhattan,8,40.7710104,-73.99438,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
-4616338,12th Ave N 40th - 57th St,Manhattan,9,40.7715106,-73.9942,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
+4616338,12th Ave N 40th - 57th St,Manhattan,2,40.76335,-73.999271,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
+4616338,12th Ave N 40th - 57th St,Manhattan,3,40.76491,-73.99805,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
+4616338,12th Ave N 40th - 57th St,Manhattan,4,40.7667406,-73.996681,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
+4616338,12th Ave N 40th - 57th St,Manhattan,5,40.7693,-73.994801,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
+4616338,12th Ave N 40th - 57th St,Manhattan,6,40.7699605,-73.994521,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
+4616338,12th Ave N 40th - 57th St,Manhattan,7,40.7710104,-73.99438,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
+4616338,12th Ave N 40th - 57th St,Manhattan,8,40.7715106,-73.9942,9.94,300.0,2017-05-05T10:21:49.000,Normal,Severe congestion
 4616323,12th Ave S 57th St - 45th St,Manhattan,1,40.77158,-73.994441,13.05,171.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616323,12th Ave S 57th St - 45th St,Manhattan,2,40.7713004,-73.99455,13.05,171.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616323,12th Ave S 57th St - 45th St,Manhattan,3,40.77085,-73.99467,13.05,171.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
@@ -544,7 +537,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616340,BQE N Atlantic Ave - MAN Bridge Manhattan Side,Manhattan,10,40.76,-73.984951,13.05,709.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616340,BQE N Atlantic Ave - MAN Bridge Manhattan Side,Manhattan,11,40.69975,-73.984681,13.05,709.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616340,BQE N Atlantic Ave - MAN Bridge Manhattan Side,Manhattan,12,40.6995605,-73.984551,13.05,709.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
-4616340,BQE N Atlantic Ave - MAN Bridge Manhattan Side,Manhattan,13,40.69944,-73.0,13.05,709.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4456450,FDR N - TBB E 116TH STREET - MANHATTAN TRUSS,Manhattan,1,40.80069,-73.92878,29.2,82.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
 4456450,FDR N - TBB E 116TH STREET - MANHATTAN TRUSS,Manhattan,2,40.8013005,-73.930181,29.2,82.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
 4456450,FDR N - TBB E 116TH STREET - MANHATTAN TRUSS,Manhattan,3,40.8014104,-73.93057,29.2,82.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
@@ -594,7 +586,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616333,FDR S 25th St - Catherine Slip,Manhattan,10,40.73067,-73.97328,42.25,243.0,2017-05-05T10:21:49.000,Normal,Free flow
 4616333,FDR S 25th St - Catherine Slip,Manhattan,11,40.73019,-73.972671,42.25,243.0,2017-05-05T10:21:49.000,Normal,Free flow
 4616333,FDR S 25th St - Catherine Slip,Manhattan,12,40.72966,-73.972181,42.25,243.0,2017-05-05T10:21:49.000,Normal,Free flow
-4616333,FDR S 25th St - Catherine Slip,Manhattan,13,40.72914,-73.0,42.25,243.0,2017-05-05T10:21:49.000,Normal,Free flow
 4616332,FDR S 63rd - 25th St,Manhattan,1,40.7606904,-73.956791,29.83,225.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
 4616332,FDR S 63rd - 25th St,Manhattan,2,40.7601606,-73.95751,29.83,225.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
 4616332,FDR S 63rd - 25th St,Manhattan,3,40.75941,-73.9582,29.83,225.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
@@ -620,14 +611,13 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616334,FDR S Catherine Slip - Whitehall St,Manhattan,3,40.70871,-73.99818,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
 4616334,FDR S Catherine Slip - Whitehall St,Manhattan,4,40.7084506,-73.99889,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
 4616334,FDR S Catherine Slip - Whitehall St,Manhattan,5,40.70799,-73.999681,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
-4616334,FDR S Catherine Slip - Whitehall St,Manhattan,6,40.7074605,-74.68,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
-4616334,FDR S Catherine Slip - Whitehall St,Manhattan,7,40.70631,-74.002801,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
-4616334,FDR S Catherine Slip - Whitehall St,Manhattan,8,40.70521,-74.004551,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
-4616334,FDR S Catherine Slip - Whitehall St,Manhattan,9,40.7039204,-74.00654,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
-4616334,FDR S Catherine Slip - Whitehall St,Manhattan,10,40.7027605,-74.00843,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
-4616334,FDR S Catherine Slip - Whitehall St,Manhattan,11,40.70235,-74.00909,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
-4616334,FDR S Catherine Slip - Whitehall St,Manhattan,12,40.70212,-74.00955,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
-4616334,FDR S Catherine Slip - Whitehall St,Manhattan,13,40.70194,-74.01008,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
+4616334,FDR S Catherine Slip - Whitehall St,Manhattan,6,40.70631,-74.002801,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
+4616334,FDR S Catherine Slip - Whitehall St,Manhattan,7,40.70521,-74.004551,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
+4616334,FDR S Catherine Slip - Whitehall St,Manhattan,8,40.7039204,-74.00654,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
+4616334,FDR S Catherine Slip - Whitehall St,Manhattan,9,40.7027605,-74.00843,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
+4616334,FDR S Catherine Slip - Whitehall St,Manhattan,10,40.70235,-74.00909,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
+4616334,FDR S Catherine Slip - Whitehall St,Manhattan,11,40.70212,-74.00955,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
+4616334,FDR S Catherine Slip - Whitehall St,Manhattan,12,40.70194,-74.01008,8.7,156.0,2015-12-08T15:24:35.000,Normal,Severe congestion
 4456495,FDR S Whitehall St - BBT Manhattan Portal outbound,Manhattan,1,40.7013,-74.01317,31.69,111.0,2015-07-15T10:56:05.000,Normal,Moderate traffic
 4456495,FDR S Whitehall St - BBT Manhattan Portal outbound,Manhattan,2,40.7014804,-74.014261,31.69,111.0,2015-07-15T10:56:05.000,Normal,Moderate traffic
 4456495,FDR S Whitehall St - BBT Manhattan Portal outbound,Manhattan,3,40.7016405,-74.014801,31.69,111.0,2015-07-15T10:56:05.000,Normal,Moderate traffic
@@ -731,7 +721,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616327,West St S Battery Pl - FDR N Catherine Slip,Manhattan,10,40.7018906,-74.00995,13.05,105.0,2015-12-08T15:24:35.000,Normal,Heavy congestion
 4616327,West St S Battery Pl - FDR N Catherine Slip,Manhattan,11,40.70306,-74.007731,13.05,105.0,2015-12-08T15:24:35.000,Normal,Heavy congestion
 4616327,West St S Battery Pl - FDR N Catherine Slip,Manhattan,12,40.70481,-74.004951,13.05,105.0,2015-12-08T15:24:35.000,Normal,Heavy congestion
-4616327,West St S Battery Pl - FDR N Catherine Slip,Manhattan,13,40.70656,-7.0,13.05,105.0,2015-12-08T15:24:35.000,Normal,Heavy congestion
 4456494,West St S Spring St - BBT Manhattan Portal outbound,Manhattan,1,40.7262006,-74.01112,3.73,1511.0,2017-05-05T09:57:54.000,Normal,Severe congestion
 4456494,West St S Spring St - BBT Manhattan Portal outbound,Manhattan,2,40.7252805,-74.01128,3.73,1511.0,2017-05-05T09:57:54.000,Normal,Severe congestion
 4456494,West St S Spring St - BBT Manhattan Portal outbound,Manhattan,3,40.7218105,-74.011981,3.73,1511.0,2017-05-05T09:57:54.000,Normal,Severe congestion
@@ -807,7 +796,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4456478,BE S TBB EXIT RAMP - QUEENS ANCHORAGE,Queens,10,40.78549,-73.930051,29.83,235.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
 4456478,BE S TBB EXIT RAMP - QUEENS ANCHORAGE,Queens,11,40.7860304,-73.92985,29.83,235.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
 4456478,BE S TBB EXIT RAMP - QUEENS ANCHORAGE,Queens,12,40.7866206,-73.929511,29.83,235.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
-4456478,BE S TBB EXIT RAMP - QUEENS ANCHORAGE,Queens,13,40.7883206,-7.0,29.83,235.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
 4456497,BWB N Queens Anchorage - Toll Plaza,Queens,1,40.79932,-73.82809,16.78,266.0,2017-05-05T10:25:54.000,Normal,Heavy congestion
 4456497,BWB N Queens Anchorage - Toll Plaza,Queens,2,40.8006,-73.82895,16.78,266.0,2017-05-05T10:25:54.000,Normal,Heavy congestion
 4456497,BWB N Queens Anchorage - Toll Plaza,Queens,3,40.8047004,-73.83146,16.78,266.0,2017-05-05T10:25:54.000,Normal,Heavy congestion
@@ -828,7 +816,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616312,BWB S Queens Anchorage - WSE S Exit 14 (Linden Pl),Queens,10,40.78439,-73.8247,49.09,139.0,2017-05-05T10:21:49.000,Normal,Free flow
 4616312,BWB S Queens Anchorage - WSE S Exit 14 (Linden Pl),Queens,11,40.78249,-73.825031,49.09,139.0,2017-05-05T10:21:49.000,Normal,Free flow
 4616312,BWB S Queens Anchorage - WSE S Exit 14 (Linden Pl),Queens,12,40.7817,-73.82527,49.09,139.0,2017-05-05T10:21:49.000,Normal,Free flow
-4616312,BWB S Queens Anchorage - WSE S Exit 14 (Linden Pl),Queens,13,40.78065,-7.0,49.09,139.0,2017-05-05T10:21:49.000,Normal,Free flow
 4616355,Belt Pkwy E 182nd St - Laurelton Pkwy N @ SSP,Queens,1,40.66639,-73.76248,47.22,195.0,2017-05-05T10:21:51.000,Normal,Free flow
 4616355,Belt Pkwy E 182nd St - Laurelton Pkwy N @ SSP,Queens,2,40.66579,-73.75706,47.22,195.0,2017-05-05T10:21:51.000,Normal,Free flow
 4616355,Belt Pkwy E 182nd St - Laurelton Pkwy N @ SSP,Queens,3,40.66574,-73.7563,47.22,195.0,2017-05-05T10:21:51.000,Normal,Free flow
@@ -887,7 +874,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4362252,CIP N LIE ramp - TNB,Queens,10,40.78822,-73.77755,11.18,1051.0,2016-08-05T14:17:16.000,Normal,Heavy congestion
 4362252,CIP N LIE ramp - TNB,Queens,11,40.78766,-73.776491,11.18,1051.0,2016-08-05T14:17:16.000,Normal,Heavy congestion
 4362252,CIP N LIE ramp - TNB,Queens,12,40.7871504,-73.77579,11.18,1051.0,2016-08-05T14:17:16.000,Normal,Heavy congestion
-4362252,CIP N LIE ramp - TNB,Queens,13,40.78654,-73.0,11.18,1051.0,2016-08-05T14:17:16.000,Normal,Heavy congestion
 4616320,CIP N TNB - Whitestone Expwy S Exit 14 (Linden Pl),Queens,1,40.7894406,-73.786291,9.94,1071.0,2017-05-05T10:21:49.000,Normal,Severe congestion
 4616320,CIP N TNB - Whitestone Expwy S Exit 14 (Linden Pl),Queens,2,40.78918,-73.78792,9.94,1071.0,2017-05-05T10:21:49.000,Normal,Severe congestion
 4616320,CIP N TNB - Whitestone Expwy S Exit 14 (Linden Pl),Queens,3,40.78876,-73.789521,9.94,1071.0,2017-05-05T10:21:49.000,Normal,Severe congestion
@@ -912,7 +898,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4456483,CIP N ramp to TNB - TNB Queens Anchorage,Queens,10,40.790714,-73.79246,29.2,25.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
 4456483,CIP N ramp to TNB - TNB Queens Anchorage,Queens,11,40.7911,-73.79267,29.2,25.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
 4456483,CIP N ramp to TNB - TNB Queens Anchorage,Queens,12,40.791976,-73.793,29.2,25.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
-4456483,CIP N ramp to TNB - TNB Queens Anchorage,Queens,13,40.792916,-7.0,29.2,25.0,2017-05-05T10:25:54.000,Normal,Moderate traffic
 4362247,CIP NB GCP - TNB,Queens,1,40.78819,-73.79052,11.81,1294.0,2016-08-05T13:16:46.000,Normal,Heavy congestion
 4362247,CIP NB GCP - TNB,Queens,2,40.7887906,-73.78895,11.81,1294.0,2016-08-05T13:16:46.000,Normal,Heavy congestion
 4362247,CIP NB GCP - TNB,Queens,3,40.7891204,-73.78771,11.81,1294.0,2016-08-05T13:16:46.000,Normal,Heavy congestion
@@ -974,7 +959,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4362244,CVE NB LIE - WILLETS PT BLVD,Queens,10,40.78264,-73.7852,29.83,310.0,2017-05-05T10:26:29.000,Normal,Moderate traffic
 4362244,CVE NB LIE - WILLETS PT BLVD,Queens,11,40.7817,-73.78497,29.83,310.0,2017-05-05T10:26:29.000,Normal,Moderate traffic
 4362244,CVE NB LIE - WILLETS PT BLVD,Queens,12,40.78116,-73.78489,29.83,310.0,2017-05-05T10:26:29.000,Normal,Moderate traffic
-4362244,CVE NB LIE - WILLETS PT BLVD,Queens,13,40.78058,-7.0,29.83,310.0,2017-05-05T10:26:29.000,Normal,Moderate traffic
 4362342,LIE E 84TH ST - 108TH ST,Queens,1,40.72966,-73.87775,39.77,125.0,2017-05-05T10:26:34.000,Normal,Free flow
 4362342,LIE E 84TH ST - 108TH ST,Queens,2,40.730165,-73.87643,39.77,125.0,2017-05-05T10:26:34.000,Normal,Free flow
 4362342,LIE E 84TH ST - 108TH ST,Queens,3,40.7304,-73.87567,39.77,125.0,2017-05-05T10:26:34.000,Normal,Free flow
@@ -996,7 +980,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616365,LIE E QMT TOLL PLAZA - 84TH ST,Queens,9,40.73819,-73.93865001,36.04,384.0,2017-03-21T21:41:50.000,Normal,Free flow
 4616365,LIE E QMT TOLL PLAZA - 84TH ST,Queens,10,40.73796,-73.93762001,36.04,384.0,2017-03-21T21:41:50.000,Normal,Free flow
 4616365,LIE E QMT TOLL PLAZA - 84TH ST,Queens,11,40.737646,-73.93531,36.04,384.0,2017-03-21T21:41:50.000,Normal,Free flow
-4616365,LIE E QMT TOLL PLAZA - 84TH ST,Queens,12,40.736526,-73.0,36.04,384.0,2017-03-21T21:41:50.000,Normal,Free flow
 4616364,LIE W 108TH ST - 84TH ST,Queens,1,40.73744001,-73.85188001,21.75,222.0,2017-05-05T10:21:51.000,Normal,Moderate traffic
 4616364,LIE W 108TH ST - 84TH ST,Queens,2,40.737015,-73.85373001,21.75,222.0,2017-05-05T10:21:51.000,Normal,Moderate traffic
 4616364,LIE W 108TH ST - 84TH ST,Queens,3,40.73673,-73.85543001,21.75,222.0,2017-05-05T10:21:51.000,Normal,Moderate traffic
@@ -1162,7 +1145,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4456506,TNB S Toll Plaza - Queens Anchorage,Queens,10,40.81242,-73.79433,45.98,144.0,2017-04-29T03:54:00.000,Normal,Free flow
 4456506,TNB S Toll Plaza - Queens Anchorage,Queens,11,40.81186,-73.79407,45.98,144.0,2017-04-29T03:54:00.000,Normal,Free flow
 4456506,TNB S Toll Plaza - Queens Anchorage,Queens,12,40.81112,-73.79382001,45.98,144.0,2017-04-29T03:54:00.000,Normal,Free flow
-4456506,TNB S Toll Plaza - Queens Anchorage,Queens,13,40.81,-7.0,45.98,144.0,2017-04-29T03:54:00.000,Normal,Free flow
 4616298,VWE N MP4.63 (Exit 6 - Jamaica Ave) - MP6.39 (Exit 11 Jewel Ave),Queens,1,40.7278806,-73.832761,22.99,390.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
 4616298,VWE N MP4.63 (Exit 6 - Jamaica Ave) - MP6.39 (Exit 11 Jewel Ave),Queens,2,40.7270705,-73.83231,22.99,390.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
 4616298,VWE N MP4.63 (Exit 6 - Jamaica Ave) - MP6.39 (Exit 11 Jewel Ave),Queens,3,40.7265105,-73.831911,22.99,390.0,2017-05-05T10:21:49.000,Normal,Moderate traffic
@@ -1187,7 +1169,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616299,VWE N MP6.39 (Exit 11 Jewel Ave) - MP8.65 (Exit 13 Northern Blvd),Queens,10,40.7581404,-73.838771,19.88,172.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616299,VWE N MP6.39 (Exit 11 Jewel Ave) - MP8.65 (Exit 13 Northern Blvd),Queens,11,40.7558805,-73.838371,19.88,172.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616299,VWE N MP6.39 (Exit 11 Jewel Ave) - MP8.65 (Exit 13 Northern Blvd),Queens,12,40.75522,-73.8382,19.88,172.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
-4616299,VWE N MP6.39 (Exit 11 Jewel Ave) - MP8.65 (Exit 13 Northern Blvd),Queens,13,40.75473,-7.0,19.88,172.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616300,VWE N MP8.64 (Exit 13 Northern Blvd) - Whitestone Expwy Exit 14 (Linden Pl),Queens,1,40.77125,-73.833351,19.88,189.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616300,VWE N MP8.64 (Exit 13 Northern Blvd) - Whitestone Expwy Exit 14 (Linden Pl),Queens,2,40.77065,-73.834421,19.88,189.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616300,VWE N MP8.64 (Exit 13 Northern Blvd) - Whitestone Expwy Exit 14 (Linden Pl),Queens,3,40.77006,-73.8354,19.88,189.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
@@ -1200,7 +1181,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616300,VWE N MP8.64 (Exit 13 Northern Blvd) - Whitestone Expwy Exit 14 (Linden Pl),Queens,10,40.7650104,-73.83937,19.88,189.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616300,VWE N MP8.64 (Exit 13 Northern Blvd) - Whitestone Expwy Exit 14 (Linden Pl),Queens,11,40.7646304,-73.83955,19.88,189.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616300,VWE N MP8.64 (Exit 13 Northern Blvd) - Whitestone Expwy Exit 14 (Linden Pl),Queens,12,40.764281,-73.83965,19.88,189.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
-4616300,VWE N MP8.64 (Exit 13 Northern Blvd) - Whitestone Expwy Exit 14 (Linden Pl),Queens,13,40.76377,-7.0,19.88,189.0,2017-05-05T10:21:49.000,Normal,Heavy congestion
 4616276,VWE S MP2.66 (Exit 2 Rockaway Blvd) - Belt Pkwy E 182nd St,Queens,1,40.67445,-73.80181,42.87,248.0,2017-05-05T10:21:49.000,Normal,Free flow
 4616276,VWE S MP2.66 (Exit 2 Rockaway Blvd) - Belt Pkwy E 182nd St,Queens,2,40.67374,-73.80154,42.87,248.0,2017-05-05T10:21:49.000,Normal,Free flow
 4616276,VWE S MP2.66 (Exit 2 Rockaway Blvd) - Belt Pkwy E 182nd St,Queens,3,40.6726106,-73.801301,42.87,248.0,2017-05-05T10:21:49.000,Normal,Free flow
@@ -1425,7 +1405,6 @@ Link_ID,Street_Segment_Name,Borough,Sequence,Latitude,Longitude,Current_Speed_MP
 4616216,SIE E-MLK N RICHMOND AVENUE - WALKER STREET,Staten Island,10,40.6234004,-74.146791,49.71,172.0,2016-11-01T19:12:29.000,Normal,Free flow
 4616216,SIE E-MLK N RICHMOND AVENUE - WALKER STREET,Staten Island,11,40.6226205,-74.14725,49.71,172.0,2016-11-01T19:12:29.000,Normal,Free flow
 4616216,SIE E-MLK N RICHMOND AVENUE - WALKER STREET,Staten Island,12,40.6217004,-74.147961,49.71,172.0,2016-11-01T19:12:29.000,Normal,Free flow
-4616216,SIE E-MLK N RICHMOND AVENUE - WALKER STREET,Staten Island,13,40.61916,-7.0,49.71,172.0,2016-11-01T19:12:29.000,Normal,Free flow
 4616217,SIE W - MLK N WOOLEY AVENUE - WLAKER STREET,Staten Island,1,40.6167105,-74.15242,11.81,589.0,2016-11-01T22:43:29.000,Normal,Heavy congestion
 4616217,SIE W - MLK N WOOLEY AVENUE - WLAKER STREET,Staten Island,2,40.61572,-74.15276,11.81,589.0,2016-11-01T22:43:29.000,Normal,Heavy congestion
 4616217,SIE W - MLK N WOOLEY AVENUE - WLAKER STREET,Staten Island,3,40.6148106,-74.152971,11.81,589.0,2016-11-01T22:43:29.000,Normal,Heavy congestion

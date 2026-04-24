@@ -25,6 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parent
 ENV_PATH = ROOT_DIR / "secrets.env"
 
+NYC_LAT_MIN = 40.45
+NYC_LAT_MAX = 40.95
+NYC_LON_MIN = -74.30
+NYC_LON_MAX = -73.65
+
 CURRENT_SEGMENTS_CSV = BASE_DIR / "speed_segments_current.csv"
 PATH_SEGMENTS_CSV = BASE_DIR / "speed_segments_path.csv"
 STREET_SUMMARY_CSV = BASE_DIR / "street_speed_summary.csv"
@@ -100,19 +105,20 @@ def parse_link_points(link_points: str | None) -> list[tuple[float, float]]:
         lon = parse_float(lon_raw)
         if lat is None or lon is None:
             continue
+        if not (NYC_LAT_MIN <= lat <= NYC_LAT_MAX and NYC_LON_MIN <= lon <= NYC_LON_MAX):
+            continue
         points.append((lat, lon))
 
     return points
 
 
-def midpoint(points: list[tuple[float, float]]) -> tuple[float | None, float | None]:
+def representative_point(points: list[tuple[float, float]]) -> tuple[float | None, float | None]:
     if not points:
         return None, None
 
-    lat_total = sum(point[0] for point in points)
-    lon_total = sum(point[1] for point in points)
-    count = len(points)
-    return round(lat_total / count, 6), round(lon_total / count, 6)
+    mid_index = len(points) // 2
+    latitude, longitude = points[mid_index]
+    return round(latitude, 6), round(longitude, 6)
 
 
 def status_label(status_code: str | None) -> str:
@@ -161,7 +167,7 @@ def normalize_documents(documents: Iterable[dict]) -> list[SegmentRecord]:
 
     for doc in documents:
         points = parse_link_points(doc.get("link_points"))
-        mid_lat, mid_lon = midpoint(points)
+        mid_lat, mid_lon = representative_point(points)
         first_point = points[0] if points else (None, None)
         last_point = points[-1] if points else (None, None)
         current_speed = parse_float(doc.get("speed"))
@@ -277,8 +283,6 @@ def build_summary_rows(records: list[SegmentRecord]) -> list[dict]:
     for (borough, street_segment_name), group in sorted(grouped.items()):
         speeds = [item.current_speed_mph for item in group if item.current_speed_mph is not None]
         travel_times = [item.travel_time_seconds for item in group if item.travel_time_seconds is not None]
-        latitudes = [item.mid_latitude for item in group if item.mid_latitude is not None]
-        longitudes = [item.mid_longitude for item in group if item.mid_longitude is not None]
         latest_record = max(
             group,
             key=lambda item: (
@@ -297,8 +301,8 @@ def build_summary_rows(records: list[SegmentRecord]) -> list[dict]:
                 "Maximum_Speed_MPH": max(speeds) if speeds else None,
                 "Average_Travel_Time_Seconds": round(sum(travel_times) / len(travel_times), 2) if travel_times else None,
                 "Latest_Data_As_Of": latest_record.data_as_of_raw,
-                "Representative_Latitude": round(sum(latitudes) / len(latitudes), 6) if latitudes else None,
-                "Representative_Longitude": round(sum(longitudes) / len(longitudes), 6) if longitudes else None,
+                "Representative_Latitude": latest_record.mid_latitude,
+                "Representative_Longitude": latest_record.mid_longitude,
                 "Most_Recent_Speed_Category": latest_record.speed_category,
             }
         )

@@ -11,6 +11,8 @@ from __future__ import annotations
 
 import csv
 import os
+import math
+import re
 import tempfile
 from dataclasses import dataclass
 from datetime import datetime
@@ -24,6 +26,15 @@ from pymongo import MongoClient
 BASE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parent
 ENV_PATH = ROOT_DIR / "secrets.env"
+
+NYC_LAT_MIN = 40.45
+NYC_LAT_MAX = 40.95
+NYC_LON_MIN = -74.30
+NYC_LON_MAX = -73.65
+MAX_CONSECUTIVE_POINT_DISTANCE_MILES = 2.0
+COORDINATE_PAIR_PATTERN = re.compile(
+    r"(?P<lat>-?\d+(?:\.\d+)?),(?P<lon>-?\d+(?:\.\d+)?)"
+)
 
 CURRENT_SEGMENTS_CSV = BASE_DIR / "speed_segments_current.csv"
 PATH_SEGMENTS_CSV = BASE_DIR / "speed_segments_path.csv"
@@ -46,6 +57,7 @@ class SegmentRecord:
     status_label: str
     speed_category: str
     link_points_raw: str
+    points: list[tuple[float, float]]
     point_count: int
     start_latitude: float | None
     start_longitude: float | None
@@ -86,33 +98,79 @@ def parse_float(value: str | int | float | None) -> float | None:
         return None
 
 
+def is_nyc_coordinate(latitude: float, longitude: float) -> bool:
+    return NYC_LAT_MIN <= latitude <= NYC_LAT_MAX and NYC_LON_MIN <= longitude <= NYC_LON_MAX
+
+
+def miles_between_points(
+    first: tuple[float, float],
+    second: tuple[float, float],
+) -> float:
+    lat1, lon1 = first
+    lat2, lon2 = second
+    radius_miles = 3958.7613
+
+    lat1_rad = math.radians(lat1)
+    lon1_rad = math.radians(lon1)
+    lat2_rad = math.radians(lat2)
+    lon2_rad = math.radians(lon2)
+
+    dlat = lat2_rad - lat1_rad
+    dlon = lon2_rad - lon1_rad
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon / 2) ** 2
+    )
+    return 2 * radius_miles * math.asin(math.sqrt(a))
+
+
+def sanitize_points(points: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    if len(points) < 2:
+        return points
+
+    runs: list[list[tuple[float, float]]] = []
+    current_run = [points[0]]
+
+    for point in points[1:]:
+        if (
+            miles_between_points(current_run[-1], point)
+            <= MAX_CONSECUTIVE_POINT_DISTANCE_MILES
+        ):
+            current_run.append(point)
+            continue
+
+        runs.append(current_run)
+        current_run = [point]
+
+    runs.append(current_run)
+    runs.sort(key=lambda run: (len(run), -points.index(run[0])), reverse=True)
+    return runs[0]
+
+
 def parse_link_points(link_points: str | None) -> list[tuple[float, float]]:
     points: list[tuple[float, float]] = []
     if not link_points:
         return points
 
-    for raw_pair in link_points.split():
-        if "," not in raw_pair:
-            continue
-
-        lat_raw, lon_raw = raw_pair.split(",", 1)
-        lat = parse_float(lat_raw)
-        lon = parse_float(lon_raw)
+    for match in COORDINATE_PAIR_PATTERN.finditer(link_points):
+        lat = parse_float(match.group("lat"))
+        lon = parse_float(match.group("lon"))
         if lat is None or lon is None:
+            continue
+        if not is_nyc_coordinate(lat, lon):
             continue
         points.append((lat, lon))
 
-    return points
+    return sanitize_points(points)
 
 
-def midpoint(points: list[tuple[float, float]]) -> tuple[float | None, float | None]:
+def representative_point(points: list[tuple[float, float]]) -> tuple[float | None, float | None]:
     if not points:
         return None, None
 
-    lat_total = sum(point[0] for point in points)
-    lon_total = sum(point[1] for point in points)
-    count = len(points)
-    return round(lat_total / count, 6), round(lon_total / count, 6)
+    mid_index = len(points) // 2
+    latitude, longitude = points[mid_index]
+    return round(latitude, 6), round(longitude, 6)
 
 
 def status_label(status_code: str | None) -> str:
@@ -144,46 +202,56 @@ def latest_segment_documents(collection) -> list[dict]:
     pipeline = [
         {"$match": {"link_id": {"$exists": True, "$ne": None}}},
         {"$sort": {"link_id": 1, "data_as_of": -1, "_id": -1}},
-        {
-            "$group": {
-                "_id": "$link_id",
-                "doc": {"$first": "$$ROOT"},
-            }
-        },
-        {"$replaceRoot": {"newRoot": "$doc"}},
-        {"$sort": {"borough": 1, "link_name": 1, "link_id": 1}},
     ]
     return list(collection.aggregate(pipeline, allowDiskUse=True))
 
 
 def normalize_documents(documents: Iterable[dict]) -> list[SegmentRecord]:
     records: list[SegmentRecord] = []
+    documents_by_link_id: dict[str, list[dict]] = {}
 
     for doc in documents:
-        points = parse_link_points(doc.get("link_points"))
-        mid_lat, mid_lon = midpoint(points)
+        link_id = str(doc.get("link_id", "")).strip()
+        if not link_id:
+            continue
+        documents_by_link_id.setdefault(link_id, []).append(doc)
+
+    for link_id, group in documents_by_link_id.items():
+        latest_doc = group[0]
+        points: list[tuple[float, float]] = []
+        for candidate in group:
+            candidate_points = parse_link_points(candidate.get("link_points"))
+            if len(candidate_points) > len(points):
+                points = candidate_points
+        link_points_raw = " ".join(
+            f"{latitude:.6f},{longitude:.6f}"
+            for latitude, longitude in points
+        )
+
+        mid_lat, mid_lon = representative_point(points)
         first_point = points[0] if points else (None, None)
         last_point = points[-1] if points else (None, None)
-        current_speed = parse_float(doc.get("speed"))
-        travel_time = parse_float(doc.get("travel_time"))
-        data_as_of_raw = doc.get("data_as_of", "")
+        current_speed = parse_float(latest_doc.get("speed"))
+        travel_time = parse_float(latest_doc.get("travel_time"))
+        data_as_of_raw = latest_doc.get("data_as_of", "")
 
         records.append(
             SegmentRecord(
-                link_id=str(doc.get("link_id", "")).strip(),
-                record_id=str(doc.get("id", "")).strip(),
-                street_segment_name=str(doc.get("link_name", "")).strip() or "Unknown",
-                borough=str(doc.get("borough", "")).strip() or "Unknown",
-                owner=str(doc.get("owner", "")).strip(),
-                transcom_id=str(doc.get("transcom_id", "")).strip(),
+                link_id=link_id,
+                record_id=str(latest_doc.get("id", "")).strip(),
+                street_segment_name=str(latest_doc.get("link_name", "")).strip() or "Unknown",
+                borough=str(latest_doc.get("borough", "")).strip() or "Unknown",
+                owner=str(latest_doc.get("owner", "")).strip(),
+                transcom_id=str(latest_doc.get("transcom_id", "")).strip(),
                 current_speed_mph=current_speed,
                 travel_time_seconds=travel_time,
                 data_as_of_raw=data_as_of_raw,
                 data_as_of=parse_iso_datetime(data_as_of_raw),
-                status_code=str(doc.get("status", "")).strip(),
-                status_label=status_label(doc.get("status")),
+                status_code=str(latest_doc.get("status", "")).strip(),
+                status_label=status_label(latest_doc.get("status")),
                 speed_category=speed_category(current_speed),
-                link_points_raw=str(doc.get("link_points", "")).strip(),
+                link_points_raw=link_points_raw,
+                points=points,
                 point_count=len(points),
                 start_latitude=first_point[0],
                 start_longitude=first_point[1],
@@ -194,7 +262,10 @@ def normalize_documents(documents: Iterable[dict]) -> list[SegmentRecord]:
             )
         )
 
-    return records
+    return sorted(
+        records,
+        key=lambda record: (record.borough, record.street_segment_name, record.link_id),
+    )
 
 
 def atomic_write_csv(path: Path, fieldnames: list[str], rows: Iterable[dict]) -> None:
@@ -248,8 +319,7 @@ def build_current_segment_rows(records: list[SegmentRecord]) -> list[dict]:
 def build_path_rows(records: list[SegmentRecord]) -> list[dict]:
     rows: list[dict] = []
     for record in records:
-        points = parse_link_points(record.link_points_raw)
-        for sequence, (latitude, longitude) in enumerate(points, start=1):
+        for sequence, (latitude, longitude) in enumerate(record.points, start=1):
             rows.append(
                 {
                     "Link_ID": record.link_id,
@@ -277,8 +347,6 @@ def build_summary_rows(records: list[SegmentRecord]) -> list[dict]:
     for (borough, street_segment_name), group in sorted(grouped.items()):
         speeds = [item.current_speed_mph for item in group if item.current_speed_mph is not None]
         travel_times = [item.travel_time_seconds for item in group if item.travel_time_seconds is not None]
-        latitudes = [item.mid_latitude for item in group if item.mid_latitude is not None]
-        longitudes = [item.mid_longitude for item in group if item.mid_longitude is not None]
         latest_record = max(
             group,
             key=lambda item: (
@@ -297,8 +365,8 @@ def build_summary_rows(records: list[SegmentRecord]) -> list[dict]:
                 "Maximum_Speed_MPH": max(speeds) if speeds else None,
                 "Average_Travel_Time_Seconds": round(sum(travel_times) / len(travel_times), 2) if travel_times else None,
                 "Latest_Data_As_Of": latest_record.data_as_of_raw,
-                "Representative_Latitude": round(sum(latitudes) / len(latitudes), 6) if latitudes else None,
-                "Representative_Longitude": round(sum(longitudes) / len(longitudes), 6) if longitudes else None,
+                "Representative_Latitude": latest_record.mid_latitude,
+                "Representative_Longitude": latest_record.mid_longitude,
                 "Most_Recent_Speed_Category": latest_record.speed_category,
             }
         )

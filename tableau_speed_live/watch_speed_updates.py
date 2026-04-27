@@ -7,32 +7,46 @@ If change streams are unavailable, the script falls back to a lightweight pollin
 
 from __future__ import annotations
 
+import hashlib
 import time
 from datetime import datetime
 
 from pymongo.errors import PyMongoError
 
-from export_speed_data import export_speed_data, load_collection
+from export_speed_data import export_speed_data, latest_segment_documents, load_collection
 
 
 POLL_INTERVAL_SECONDS = 60
 
 
-def current_signature(collection) -> tuple[int, str, str]:
-    latest = list(
-        collection.find(
-            {},
-            {"_id": 1, "data_as_of": 1},
-        )
-        .sort([("data_as_of", -1), ("_id", -1)])
-        .limit(1)
-    )
-    if not latest:
-        return 0, "", ""
+def current_signature(collection) -> str:
+    """
+    Build a polling signature from the latest version of each street segment.
 
-    total_docs = collection.count_documents({})
-    latest_doc = latest[0]
-    return total_docs, str(latest_doc.get("_id", "")), str(latest_doc.get("data_as_of", ""))
+    This catches:
+    - new inserts
+    - updates to existing documents
+    - deletes that change the effective latest segment view
+    """
+    documents = latest_segment_documents(collection)
+    digest = hashlib.sha256()
+
+    for doc in documents:
+        parts = [
+            str(doc.get("link_id", "")),
+            str(doc.get("id", "")),
+            str(doc.get("link_name", "")),
+            str(doc.get("borough", "")),
+            str(doc.get("speed", "")),
+            str(doc.get("travel_time", "")),
+            str(doc.get("data_as_of", "")),
+            str(doc.get("status", "")),
+            str(doc.get("link_points", "")),
+        ]
+        digest.update("|".join(parts).encode("utf-8"))
+        digest.update(b"\n")
+
+    return digest.hexdigest()
 
 
 def run_export(reason: str) -> None:

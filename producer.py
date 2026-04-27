@@ -109,8 +109,8 @@ if crash_url and speed_url:
                 print(f"Error fetching speed data: {e}")
             
             # Sleep for 1 hour before next fetch
-            print("Sleeping for 1 hour...")
-            time.sleep(3600)
+            print("Sleeping for 1 seconds...")
+            time.sleep(1)
     else:
         print("Could not extract dataset IDs from URLs")
 else:

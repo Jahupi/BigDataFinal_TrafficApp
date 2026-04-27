@@ -59,9 +59,8 @@ Tools:
 - [Traffic Speed on a local NYC Street](https://data.cityofnewyork.us/Transportation/EZ-Pass-Readers-July-2024-current/6a2s-2t65/about_data)
 
 (a) Use past and present traffic speeds to determine whether there is currently congestion by comparing the speeds and times against each other.
-~~(b) Use past and present accident/collision information to analyze
-which routes/streets are the most dangerous. Show as a bar chart
-with the top 10 most dangerous intersections/streets.~~
+(b) Use past and present accident/collision information to analyze
+which routes/streets are the most dangerous. top 10.
 (c) Generate a heatmap of every day traffic to show the averages of
 each street day to day.
 (d) Analyze the relationship between traffic congestion and accident

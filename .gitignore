@@ -1,1 +1,3 @@
 /spark_analysis_output
+secrets.env
+*.env

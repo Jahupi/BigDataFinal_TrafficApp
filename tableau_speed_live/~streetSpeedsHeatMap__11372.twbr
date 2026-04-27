@@ -427,8 +427,8 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.1rriz941y0u3e81072axq01yyg18].[avg:Mid_Longitude:qk]' field-type='quantitative' max='-7605266.2322292132' min='-8490698.5103802998' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.1rriz941y0u3e81072axq01yyg18].[avg:Mid_Latitude:qk]' field-type='quantitative' max='5274052.3528655237' min='4702176.8087055823' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.1rriz941y0u3e81072axq01yyg18].[avg:Mid_Longitude:qk]' field-type='quantitative' max='-8168181.3783693509' min='-8313650.5904819891' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.1rriz941y0u3e81072axq01yyg18].[avg:Mid_Latitude:qk]' field-type='quantitative' max='5014893.2288799835' min='4920938.7990627792' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.1rriz941y0u3e81072axq01yyg18].[sum:Current_Speed_MPH:qk]' palette='red_green_gold_diverging_10_0' type='interpolated' />

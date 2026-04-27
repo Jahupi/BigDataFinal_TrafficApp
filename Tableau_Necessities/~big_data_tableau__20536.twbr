@@ -2370,8 +2370,8 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0arbe1m10vf0qg17gyvvh0zabto0].[avg:Longitude:qk]' field-type='quantitative' max='-8135358.1816457137' min='-8286845.3941825395' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.0arbe1m10vf0qg17gyvvh0zabto0].[avg:Latitude:qk]' field-type='quantitative' max='5022166.4312607255' min='4916575.3434653496' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0arbe1m10vf0qg17gyvvh0zabto0].[avg:Longitude:qk]' field-type='quantitative' max='-8189389.0440566158' min='-8245057.4061753713' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0arbe1m10vf0qg17gyvvh0zabto0].[avg:Latitude:qk]' field-type='quantitative' max='4985461.9705282226' min='4946659.4682346564' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0arbe1m10vf0qg17gyvvh0zabto0].[sum:Congestion:qk]' palette='tableau-map-temperatur' symmetric='false' type='interpolated' />
